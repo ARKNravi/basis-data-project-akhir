@@ -23,7 +23,7 @@ public class Sbd1 {
             // sbd1.statementQuery(conn);
             // sbd1.preparedStatementInsert(conn);
             // System.out.println("After Insert with preparedstatement");
-            // sbd1.statementQuery(conn);
+            sbd1.statementQuery(conn);
             sbd1.statementDelete(conn);
         } catch (Exception e) {
             e.printStackTrace();
