@@ -1,3 +1,4 @@
+package contoh;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,13 +17,13 @@ public class Sbd1 {
         Sbd1 sbd1 = new Sbd1();
         try {
             conn = sbd1.getConnection(url, userName, password);
-            // System.out.println("Before Insert");
-            // sbd1.statementQuery(conn);
-            // sbd1.statementInsert(conn);
-            // System.out.println("After Insert");
-            // sbd1.statementQuery(conn);
-            // sbd1.preparedStatementInsert(conn);
-            // System.out.println("After Insert with preparedstatement");
+            System.out.println("Before Insert");
+            sbd1.statementQuery(conn);
+            sbd1.statementInsert(conn);
+            System.out.println("After Insert");
+            sbd1.statementQuery(conn);
+            sbd1.preparedStatementInsert(conn);
+            System.out.println("After Insert with preparedstatement");
             sbd1.statementQuery(conn);
             sbd1.statementDelete(conn);
         } catch (Exception e) {
