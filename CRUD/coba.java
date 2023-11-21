@@ -94,7 +94,7 @@ public class coba {
 
     public Connection getConnection(String url, String userName, String passwd)
 
-            throws SQLException, ClassNotFoundException {
+        throws SQLException, ClassNotFoundException {
         Class.forName("net.sourceforge.jtds.jdbc.Driver");
         Connection conn = DriverManager.getConnection(url, userName, passwd);
         return conn;
