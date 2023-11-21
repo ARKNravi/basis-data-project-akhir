@@ -20,65 +20,65 @@ public class coba {
         try {
             conn = konek.getConnection(url, userName, password);
 
-            // // Create
-            // while(true) {
-            // System.out.print("Nama barang\t: ");
-            // String nama = in.nextLine();
-            // if(nama.equals("0"))break;
+            // Create
+            while(true) {
+            System.out.print("Nama barang\t: ");
+            String nama = in.nextLine();
+            if(nama.equals("0"))break;
 
-            // System.out.print("Harga\t\t: ");
-            // int harga = in.nextInt();
-            // in.nextLine();
-            // Create.insertBarang(conn, nama, harga);
-            // }
+            System.out.print("Harga\t\t: ");
+            int harga = in.nextInt();
+            in.nextLine();
+            Create.insertBarang(conn, nama, harga);
+            }
 
-            // // baca barang
-            // Read.bacaBarang(conn);
+            // baca barang
+            Read.bacaBarang(conn);
 
             // // baca stok barang
             // Read.bacaStokBarang(conn);
 
-            // insert transaksi nota
-            int total_barang = 0;
-            int total_harga = 0;
-            while (true) {
-                Read.bacaBarang(conn);
+            // // insert transaksi nota
+            // int total_barang = 0;
+            // int total_harga = 0;
+            // while (true) {
+            //     Read.bacaBarang(conn);
 
-                System.out.print("Masukkan kode barang: ");
-                String kode = in.next();
-                if (kode.equals("0"))
-                    break;
-                int kode_barang = Integer.parseInt(kode.replace('P', '0'));
+            //     System.out.print("Masukkan kode barang: ");
+            //     String kode = in.next();
+            //     if (kode.equals("0"))
+            //         break;
+            //     int kode_barang = Integer.parseInt(kode.replace('P', '0'));
 
-                System.out.print("Pilih Ukuran(S,M,L,XL,XXL): ");
-                String ukuran = in.next();
+            //     System.out.print("Pilih Ukuran(S,M,L,XL,XXL): ");
+            //     String ukuran = in.next();
 
-                System.out.print("Jumlah: ");
-                int jumlah_barang = in.nextInt();
+            //     System.out.print("Jumlah: ");
+            //     int jumlah_barang = in.nextInt();
 
-                if (total_barang == 0) {
-                    Create.insertNota(conn, 0, 0, "OF");
-                }
-                Create.insertTransaksi(conn, kode_barang, ukuran, jumlah_barang);
-                total_barang += jumlah_barang;
-                total_harga += Read.bacaHargaBarang(conn, kode_barang) * jumlah_barang;
-            }
-            System.out.print("""
-                    1. Offline\t(OF)
-                    2. Shopee\t(SP)
-                    3. Tokopedia\t(TP)
-                    Pilih metode pembayaran diatas: """);
-            String metode = in.next();
+            //     if (total_barang == 0) {
+            //         Create.insertNota(conn, 0, 0, "OF");
+            //     }
+            //     Create.insertTransaksi(conn, kode_barang, ukuran, jumlah_barang);
+            //     total_barang += jumlah_barang;
+            //     total_harga += Read.bacaHargaBarang(conn, kode_barang) * jumlah_barang;
+            // }
+            // System.out.print("""
+            //         1. Offline\t(OF)
+            //         2. Shopee\t(SP)
+            //         3. Tokopedia\t(TP)
+            //         Pilih metode pembayaran diatas: """);
+            // String metode = in.next();
 
-            Statement st = conn.createStatement();
-            st.executeUpdate(
-                    String.format("UPDATE nota\n" + //
-                            "SET total_barang = %d, total_harga = %d, metode_pembelian = '%s'\n" + //
-                            "WHERE no_nota = %d;",
-                            total_barang, total_harga, metode, Read.ambilNoNotaTerakhir(conn)));
+            // Statement st = conn.createStatement();
+            // st.executeUpdate(
+            //         String.format("UPDATE nota\n" + //
+            //                 "SET total_barang = %d, total_harga = %d, metode_pembelian = '%s'\n" + //
+            //                 "WHERE no_nota = %d;",
+            //                 total_barang, total_harga, metode, Read.ambilNoNotaTerakhir(conn)));
 
-            // baca total belanjaan
-            Read.bacaTotalBelanja(conn, Read.ambilNoNotaTerakhir(conn));
+            // // baca total belanjaan
+            // Read.bacaTotalBelanja(conn, Read.ambilNoNotaTerakhir(conn));
 
         } catch (Exception e) {
             e.printStackTrace();

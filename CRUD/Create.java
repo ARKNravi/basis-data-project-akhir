@@ -12,7 +12,22 @@ public class Create {
         Statement st = conn.createStatement();
         try {
             st.executeUpdate(String.format("INSERT INTO barang(nama_barang,harga) VALUES('%s',%d);", nama, harga));
-            insertStok(conn, nama);
+            ResultSet rs = st
+                    .executeQuery(String.format("SELECT kode_barang FROM barang WHERE nama_barang = '%s';", nama));
+            int kode_barang;
+            if (rs.next()) {
+                kode_barang = rs.getInt(1);
+            } else {
+                kode_barang = 1;
+            }
+
+            String[] ukuran = { "S", "M", "L", "XL", "XXL" };
+
+            for (String string : ukuran) {
+                st.executeUpdate(String.format(
+                        "INSERT INTO stok_barang(kode_barang,ukuran,offlen,shopee,tokopedia) VALUES(%d, '%s', 0, 0, 0);",
+                        kode_barang, string));
+            }
         } catch (Exception e) {
             System.out.println("Barang sudah ada");
         }
@@ -21,21 +36,6 @@ public class Create {
 
     public static void insertStok(Connection conn, String nama) throws SQLException {
         Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery(String.format("SELECT kode_barang FROM barang WHERE nama_barang = '%s';", nama));
-        int kode_barang;
-        if (rs.next()) {
-            kode_barang = rs.getInt(1);
-        } else {
-            kode_barang = 1;
-        }
-
-        String[] ukuran = { "S", "M", "L", "XL", "XXL" };
-
-        for (String string : ukuran) {
-            st.executeUpdate(String.format(
-                    "INSERT INTO stok_barang(kode_barang,ukuran,offlen,shopee,tokopedia) VALUES(%d, '%s', 0, 0, 0);",
-                    kode_barang, string));
-        }
 
     }
 
