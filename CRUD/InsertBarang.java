@@ -22,7 +22,7 @@ public class InsertBarang {
         String[] ukuran = { "S", "M", "L", "XL", "XXL" };
 
         try (Connection con = SQLConnection.getConnection();
-             PreparedStatement insertBarangStmt = con.prepareStatement(insertBarangSql)) {
+                PreparedStatement insertBarangStmt = con.prepareStatement(insertBarangSql)) {
 
             insertBarangStmt.setString(1, kode_barang);
             insertBarangStmt.setString(2, nama_barang);
@@ -37,7 +37,8 @@ public class InsertBarang {
                     insertStokBarangStmt.setString(2, size);
 
                     rowAffected = insertStokBarangStmt.executeUpdate();
-                    System.out.println(String.format("Row affected in 'stok_barang' table for size '%s' %d", size, rowAffected));
+                    System.out.println(
+                            String.format("Row affected in 'stok_barang' table for size '%s' %d", size, rowAffected));
                 }
             }
 

@@ -34,8 +34,6 @@ public class CreateBarang {
 
     }
 
-
-
     // add transaksi
     public static void insertNota(Connection conn, int total_barang, int total_harga, String metode_pembelian)
             throws SQLException {
@@ -45,21 +43,5 @@ public class CreateBarang {
                         total_barang, total_barang, metode_pembelian));
     }
 
-    public static void insertTransaksi(Connection conn, int kode_barang, String ukuran, int jumlah_barang)
-            throws SQLException {
-
-        Statement st = conn.createStatement();
-        int no_nota = ReadBarang.ambilNoNotaTerakhir(conn);
-        int harga = 0;
-        ResultSet rs = st.executeQuery(String.format("SELECT harga FROM barang WHERE kode_barang = %d", kode_barang));
-        if (rs.next()) {
-            harga = rs.getInt(1);
-        }
-        int total_harga_barang = harga * jumlah_barang;
-
-        st.executeUpdate(
-                String.format(
-                        "INSERT INTO transaksi(no_nota,kode_barang,ukuran,jumlah_barang,total_harga_barang) VALUES(%d, %d, '%s', %d, %d);",
-                        no_nota, kode_barang, ukuran, jumlah_barang, total_harga_barang));
-    }
+   
 }
