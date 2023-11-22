@@ -1,12 +1,11 @@
 package CRUD;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Create {
+public class CreateBarang {
 
     // add barang
     public static void insertBarang(Connection conn, String nama, int harga) throws SQLException {

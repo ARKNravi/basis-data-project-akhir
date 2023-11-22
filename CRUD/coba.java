@@ -29,7 +29,7 @@ public class coba {
             System.out.print("Harga\t\t: ");
             int harga = in.nextInt();
             in.nextLine();
-            Create.insertBarang(conn, nama, harga);
+            CreateBarang.insertBarang(conn, nama, harga);
             }
 
             // baca barang
