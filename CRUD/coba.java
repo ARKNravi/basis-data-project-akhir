@@ -80,6 +80,49 @@ public class coba {
             // // baca total belanjaan
             // Read.bacaTotalBelanja(conn, Read.ambilNoNotaTerakhir(conn));
 
+
+
+            System.out.println("Enter the values for the following fields in data_pegawai:");
+                System.out.print("nik: ");
+                String nik = in.nextLine();
+                
+                System.out.print("nama: ");
+                String nama = in.nextLine();
+                System.out.print("pendidikan: ");
+                String pendidikan = in.nextLine();
+                System.out.print("tempat: ");
+                String tempat = in.nextLine();
+                System.out.print("tanggal_lahir (yyyy-mm-dd): ");
+                String tanggal_lahir = in.nextLine();
+                System.out.print("jenis_kelamin: ");
+                String jenis_kelamin = in.nextLine();
+                System.out.print("npwp: ");
+                String npwp = in.nextLine();
+                System.out.print("status_pernikahan: ");
+                String status_pernikahan = in.nextLine();
+                System.out.print("jumlah_anak: ");
+                int jumlah_anak = Integer.parseInt(in.nextLine());
+                System.out.print("nomor_rekening: ");
+                String nomor_rekening = in.nextLine();
+                System.out.print("alamat: ");
+                String alamat = in.nextLine();
+
+                
+                System.out.println("Enter the values for the following fields in detail_pegawai:");
+                System.out.print("kelas: ");
+                int kelas = Integer.parseInt(in.nextLine());
+                System.out.print("golongan: ");
+                int golongan = Integer.parseInt(in.nextLine());
+                System.out.print("status_pegawai: ");
+                String status_pegawai = in.nextLine();
+                System.out.print("total_cuti: ");
+                int total_cuti = Integer.parseInt(in.nextLine());
+                System.out.print("total_izin: ");
+                int total_izin = Integer.parseInt(in.nextLine());
+                
+                CreateEmployee.tambahPegawai(conn, nik, nama, pendidikan, tempat, tanggal_lahir, jenis_kelamin, npwp,
+                        status_pernikahan, jumlah_anak, nomor_rekening, alamat,kelas, golongan, status_pegawai, total_cuti, total_izin);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
