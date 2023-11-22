@@ -65,4 +65,10 @@ public class Create {
                         "INSERT INTO transaksi(no_nota,kode_barang,ukuran,jumlah_barang,total_harga_barang) VALUES(%d, %d, '%s', %d, %d);",
                         no_nota, kode_barang, ukuran, jumlah_barang, total_harga_barang));
     }
+
+
+    // Pegawai
+    public static void tambahPegawai(Connection conn, String nik, String ) {
+        
+    }
 }
