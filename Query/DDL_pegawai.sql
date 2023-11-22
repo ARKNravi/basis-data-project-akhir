@@ -41,13 +41,15 @@ CREATE TABLE gaji_pokok
 
 CREATE TABLE detail_pegawai
 (
-    nip CHAR(16) NOT NULL,
+    charnip CHAR(1) NOT NULL,
+    nip INT IDENTITY(1,1) NOT NULL,
     nik CHAR(16),
     kelas INT,
     golongan INT,
     status_pegawai VARCHAR(7),
     total_cuti INT,
     total_izin INT,
+    PRIMARY KEY(charnip,nip),
     FOREIGN KEY (nik) REFERENCES data_pegawai(nik),
     FOREIGN KEY (kelas) REFERENCES jabatan(kelas),
     FOREIGN KEY (golongan) REFERENCES gaji_pokok(golongan)
