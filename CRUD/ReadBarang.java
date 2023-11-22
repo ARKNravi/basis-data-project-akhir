@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Read {
+public class ReadBarang {
 
     public static void bacaBarang(Connection conn) throws SQLException {
         Statement st = conn.createStatement();

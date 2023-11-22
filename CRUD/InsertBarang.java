@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import Connection.SQLConnection;
+
 public class InsertBarang {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

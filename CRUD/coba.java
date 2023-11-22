@@ -33,7 +33,7 @@ public class coba {
             }
 
             // baca barang
-            Read.bacaBarang(conn);
+            ReadBarang.bacaBarang(conn);
 
             // // baca stok barang
             // Read.bacaStokBarang(conn);

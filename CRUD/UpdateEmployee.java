@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import Connection.SQLConnection;
+
 public class UpdateEmployee {
     public static void main(String[] args) {
         try (Connection conn = SQLConnection.getConnection()) {
