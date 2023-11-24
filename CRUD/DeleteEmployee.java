@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import Connection.SQLConnection;
+
 public class DeleteEmployee {
     public static void main(String[] args) {
         try (Connection conn = SQLConnection.getConnection()) {
