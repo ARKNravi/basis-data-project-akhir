@@ -12,14 +12,14 @@ public class UpdateStokBarang {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the 'kode_barang' of the item you want to update:");
-        String kode_barang = scanner.nextLine();
+        int kode_barang = scanner.nextInt();
 
         String checkKodeBarangSql = "SELECT COUNT(*) FROM barang WHERE kode_barang = ?";
 
         try (Connection con = SQLConnection.getConnection();
              PreparedStatement checkKodeBarangStmt = con.prepareStatement(checkKodeBarangSql)) {
 
-            checkKodeBarangStmt.setString(1, kode_barang);
+            checkKodeBarangStmt.setInt(1, kode_barang);
 
             try (ResultSet rs = checkKodeBarangStmt.executeQuery()) {
                 if (rs.next() && rs.getInt(1) > 0) {
@@ -55,7 +55,7 @@ public class UpdateStokBarang {
 
                         try (PreparedStatement updateStmt = con.prepareStatement(String.format(updateSql, platforms[platformIndex]))) {
                             updateStmt.setInt(1, stock);
-                            updateStmt.setString(2, kode_barang);
+                            updateStmt.setInt(2, kode_barang);
                             updateStmt.setString(3, ukuran[sizeIndex]);
 
                             int rowAffected = updateStmt.executeUpdate();

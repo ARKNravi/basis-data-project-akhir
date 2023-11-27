@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
+
+import Connection.SQLConnection;
 
 public class CreateBarang {
 
@@ -28,20 +31,46 @@ public class CreateBarang {
                         "INSERT INTO stok_barang(kode_barang,ukuran,offlen,shopee,tokopedia) VALUES(%d, '%s', 0, 0, 0);",
                         kode_barang, string));
             }
+            System.out.println("Barang added successfully.");
         } catch (Exception e) {
-            System.out.println("Barang sudah ada");
+            System.out.println("Barang already exists.");
         }
 
     }
 
-    // add transaksi
-    public static void insertNota(Connection conn, int total_barang, int total_harga, String metode_pembelian)
-            throws SQLException {
-        Statement st = conn.createStatement();
-        st.executeUpdate(
-                String.format("INSERT INTO nota(total_barang,total_harga,metode_pembelian) VALUES(%d, %d, '%s')",
-                        total_barang, total_barang, metode_pembelian));
-    }
 
-   
+
+    public static void main(String[] args) {
+        try {
+            // Get a database connection
+            Connection conn = SQLConnection.getConnection();
+
+            // Get user input
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter the name of the barang: ");
+            String barangName = scanner.nextLine();
+            System.out.print("Enter the price of the barang: ");
+            int barangPrice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline left by nextInt()
+
+            // Call the method to insert barang
+            insertBarang(conn, barangName, barangPrice);
+
+            // Get user input for nota
+            System.out.print("Enter the total number of barang: ");
+            int totalBarang = scanner.nextInt();
+            System.out.print("Enter the total price of barang: ");
+            int totalHarga = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline left by nextInt()
+            System.out.print("Enter the payment method: ");
+            String paymentMethod = scanner.nextLine();
+
+            // Call the method to insert nota
+
+            // Close the connection
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

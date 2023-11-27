@@ -1,6 +1,18 @@
 package Main;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import CRUD.CreateEmployee;
+import CRUD.DeleteEmployee;
+import CRUD.ReadEmployee;
+import Connection.SQLConnection;
+import Search.Search;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,8 +28,34 @@ public class Form_Pegawai extends javax.swing.JPanel {
     /**
      * Creates new form Form_Pegawai
      */
+        private void populateTable() {
+        ResultSet resultSet = ReadEmployee.bacaSemuaPegawaiResultSet();
+
+        DefaultTableModel model = new DefaultTableModel();
+        tableDataTransaksi.setModel(model);
+
+        try {
+            // Add columns to the table model
+            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                model.addColumn(resultSet.getMetaData().getColumnName(i));
+            }
+
+            // Add rows to the table model
+            while (resultSet.next()) {
+                Object[] row = new Object[resultSet.getMetaData().getColumnCount()];
+                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                    row[i - 1] = resultSet.getObject(i);
+                }
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Form_Pegawai() {
         initComponents();
+        populateTable();
     }
 
     /**
@@ -117,11 +155,11 @@ public class Form_Pegawai extends javax.swing.JPanel {
         jLabel6.setText("Penddikan");
 
         status_comboBox.setBackground(new java.awt.Color(245, 245, 245));
-        status_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAJANG", "MENIKAH" }));
+        status_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Menikah", "Menikah" }));
         status_comboBox.setBorder(null);
 
         jLabel7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jLabel7.setText("Tempat Tanggal Lahir");
+        jLabel7.setText("Tempat Lahir");
 
         TanggalLahirField.setBackground(new java.awt.Color(245, 245, 245));
         TanggalLahirField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -166,10 +204,10 @@ public class Form_Pegawai extends javax.swing.JPanel {
         NIPField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel16.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jLabel16.setText("NIP/NRK");
+        jLabel16.setText("Tanggal Lahir (YYYY-MM-DD)");
 
         jLabel17.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jLabel17.setText("Perjanjian");
+        jLabel17.setText("Status Pegawai");
 
         PerjanjianField.setBackground(new java.awt.Color(245, 245, 245));
         PerjanjianField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -179,15 +217,15 @@ public class Form_Pegawai extends javax.swing.JPanel {
         Pendidikan_comboBOX.setBorder(null);
 
         Grade_ComnoBox.setBackground(new java.awt.Color(245, 245, 245));
-        Grade_ComnoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "I", "II", "III", "IV", "V", "VI", "VII" }));
+        Grade_ComnoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
         Grade_ComnoBox.setBorder(null);
 
         JenisKelamin_comboBox.setBackground(new java.awt.Color(245, 245, 245));
-        JenisKelamin_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAKI-LAKI", "PEREMPUAN" }));
+        JenisKelamin_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "L", "P" }));
         JenisKelamin_comboBox.setBorder(null);
 
         Golongan_ComboBox.setBackground(new java.awt.Color(245, 245, 245));
-        Golongan_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
+        Golongan_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3","4","5","6","7" }));
         Golongan_ComboBox.setBorder(null);
 
         NIKField.setBackground(new java.awt.Color(245, 245, 245));
@@ -397,10 +435,49 @@ public class Form_Pegawai extends javax.swing.JPanel {
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pecatPegawai_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pecatPegawai_buttonActionPerformed
-        // Tombol pecat pegawai
+private void pecatPegawai_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+    // Get the NIK from the NIKField
+    String nikToDelete = NIKField.getText().trim(); // Trim to remove leading/trailing spaces
+
+    // Check if NIK is empty or contains non-numeric characters
+    if (nikToDelete.isEmpty() || !nikToDelete.matches("\\d+")) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid NIK.");
+        return; // Exit the method if NIK is invalid
+    }
+
+    try (Connection connection = SQLConnection.getConnection()) {
+        // Check if the employee with the specified NIK exists before attempting deletion
+        if (!employeeExists(connection, nikToDelete)) {
+            JOptionPane.showMessageDialog(null, "Employee with NIK " + nikToDelete + " not found.");
+            return; // Exit the method if employee with NIK is not found
+        }
+
+        // Call the deleteEmployeeByNIK method from the DeleteEmployee class
+        DeleteEmployee.deleteEmployeeByNIK(connection, nikToDelete);
+
+        // Provide user feedback
         JOptionPane.showMessageDialog(null, "Pegawai dipecat!");
-    }//GEN-LAST:event_pecatPegawai_buttonActionPerformed
+
+        // Refresh the table with updated data
+        populateTable();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Failed to delete employee. Please check your inputs and try again.");
+    }
+}
+
+// Helper method to check if an employee with the specified NIK exists
+private boolean employeeExists(Connection connection, String nik) throws SQLException {
+    String sql = "SELECT COUNT(*) FROM data_pegawai WHERE nik = ?";
+    try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setString(1, nik);
+        try (ResultSet resultSet = pstmt.executeQuery()) {
+            resultSet.next();
+            return resultSet.getInt(1) > 0;
+        }
+    }
+}
+
 
     private void NIKFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NIKFieldActionPerformed
         // TODO add your handling code here:
@@ -410,14 +487,84 @@ public class Form_Pegawai extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_namaLenkapFieldActionPerformed
 
-    private void cariPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariPegawai_ButtonActionPerformed
-        // button buat update nota, supaya bisa liat harga total sementara
-    }//GEN-LAST:event_cariPegawai_ButtonActionPerformed
+    private void cariPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // Get the NIK from the NIKField for searching
+        String nikToSearch = NIKField.getText().trim();
+    
+        // Check if NIK is empty or contains non-numeric characters
+        if (nikToSearch.isEmpty() || !nikToSearch.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid NIK for searching.");
+            return; // Exit the method if NIK is invalid
+        }
+    
+        try (Connection connection = SQLConnection.getConnection()) {
+            // Call the pegawai method from the Search class to search for employees
+            ResultSet resultSet = Search.pegawai(nikToSearch);
+    
+            // Update the table with search results
+            DefaultTableModel model = new DefaultTableModel();
+            tableDataTransaksi.setModel(model);
+    
+            // Add columns to the table model
+            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                model.addColumn(resultSet.getMetaData().getColumnName(i));
+            }
+    
+            // Add rows to the table model
+            while (resultSet.next()) {
+                Object[] row = new Object[resultSet.getMetaData().getColumnCount()];
+                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                    row[i - 1] = resultSet.getObject(i);
+                }
+                model.addRow(row);
+            }
+    
+            // Provide user feedback
+            if (model.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "No employee found with NIK: " + nikToSearch);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to search for employee. Please check your inputs and try again.");
+        }
+    }
 
-    private void tambahPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahPegawai_ButtonActionPerformed
-        // Button buat tambah pwgawai 
-          JOptionPane.showMessageDialog(null, "Pegawai baru berhasil ditambah!");
-    }//GEN-LAST:event_tambahPegawai_ButtonActionPerformed
+
+private void tambahPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahPegawai_ButtonActionPerformed
+    // Button buat tambah pegawai 
+    // JOptionPane.showMessageDialog(null, "Pegawai baru berhasil ditambah!");
+
+    // Retrieve data from the form fields
+    String nik = NIKField.getText();
+    String nama = namaLenkapField.getText();
+    String pendidikan = Pendidikan_comboBOX.getSelectedItem().toString();
+    String tempat = TanggalLahirField.getText();;  // You may need to add code to retrieve this from the form
+    String tanggal_lahir = NIPField.getText();
+    String jenis_kelamin = JenisKelamin_comboBox.getSelectedItem().toString();
+    String npwp = NPWPField.getText();
+    String status_pernikahan = status_comboBox.getSelectedItem().toString();
+    int jumlah_anak = Integer.parseInt(JumlahAnakField.getText());
+    String nomor_rekening = NoRekeningField.getText();
+    String alamat = AlamatField.getText();
+    int kelas = Integer.parseInt(Grade_ComnoBox.getSelectedItem().toString());
+    int golongan = Integer.parseInt(Golongan_ComboBox.getSelectedItem().toString());
+    String status_pegawai = PerjanjianField.getText();  // You may need to add code to retrieve this from the form
+    int total_cuti = 0;  // You may need to add code to retrieve this from the form
+    int total_izin = 0;  // You may need to add code to retrieve this from the form
+
+    // Call the method to insert data into the database
+    try (Connection connection = SQLConnection.getConnection()) {
+        CreateEmployee.tambahPegawai(connection, nik, nama, pendidikan, tempat, tanggal_lahir, jenis_kelamin, npwp,
+                status_pernikahan, jumlah_anak, nomor_rekening, alamat, kelas, golongan, status_pegawai,
+                total_cuti, total_izin);
+
+        // Refresh the table with updated data
+        populateTable();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Failed to add employee. Please check your inputs and try again.");
+    }
+}//GEN-LAST:event_tambahPegawai_ButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
