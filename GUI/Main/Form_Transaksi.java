@@ -3,6 +3,10 @@ package Main;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.table.DefaultTableModel;
+
+import CRUD.ReadTransaksi;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -14,6 +18,12 @@ import java.awt.Font;
  */
 public class Form_Transaksi extends javax.swing.JPanel {
 
+        private void setTransactionsTableModel() {
+        DefaultTableModel model = ReadTransaksi.getTransactionsTableModel();
+        tableDataTransaksi.setModel(model);
+    }
+    
+
     /**
      * Creates new form Form_Transaksi
      */
@@ -24,6 +34,7 @@ public class Form_Transaksi extends javax.swing.JPanel {
         tableDataTransaksi.getTableHeader().setOpaque(false);
         tableDataTransaksi.getTableHeader().setForeground(new Color(0,0,0));
         tableDataTransaksi.setRowHeight(25);  
+        setTransactionsTableModel();
     }
     
         

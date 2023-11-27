@@ -4,17 +4,24 @@
  */
 package Main;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
- *
- * @author Bagas
+ * Main application window.
  */
 public class MenuUtama extends javax.swing.JFrame {
+
+    private JPanel pn_navbar; // Change the type to JPanel
+    private JLabel jLabel3;
+    private JLabel jLabel1;
+    private JPanel pn_sidebar;
 
     /**
      * Creates new form MenuUtama
@@ -34,7 +41,7 @@ public class MenuUtama extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pn_navbar = new project1.jpanelgradient.JPanelGradient();
+        pn_navbar = new JPanel(); // Use a standard JPanel
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         pn_sidebar = new javax.swing.JPanel();
@@ -50,15 +57,14 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
-        pn_navbar.setColorEnd(new java.awt.Color(128, 117, 255));
-        pn_navbar.setPreferredSize(new java.awt.Dimension(1212, 70));
+        pn_navbar.setBackground(new Color(128, 117, 255)); // Set background color
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setBackground(new Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Lato", 3, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new Color(255, 255, 255));
         jLabel3.setText("UB MERCH DATABASES SYSTEM");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\BRONE_UB-removebg-preview (1).png")); // NOI18N
+        jLabel1.setIcon(new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\BRONE_UB-removebg-preview (1).png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout pn_navbarLayout = new javax.swing.GroupLayout(pn_navbar);
@@ -139,7 +145,7 @@ public class MenuUtama extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details, see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -160,75 +166,68 @@ public class MenuUtama extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuUtama().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuUtama().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pn_content;
     private javax.swing.JPanel pn_menu;
-    private project1.jpanelgradient.JPanelGradient pn_navbar;
-    private javax.swing.JPanel pn_sidebar;
     private javax.swing.JPanel pn_utama;
     // End of variables declaration//GEN-END:variables
 
     private void execute() {
-       ImageIcon iconDashboard   = new ImageIcon("absolute/path/to/img/house_chimney(1).png");
-       ImageIcon iconTransaksi   = new ImageIcon("absolute/path/to/img/coins(1).png");
-       ImageIcon iconBarang      = new ImageIcon("absolute/path/to/img/box-alt(1).png");
-       ImageIcon iconPegawai     = new ImageIcon("absolute/path/to/img/user(1).png");
-       
-       
-      MenuItem menuHome           = new MenuItem(iconDashboard, false, null, "Halaman Utama", new ActionListener() {
-          @Override
-           public void actionPerformed(ActionEvent e) {
-               pn_utama.removeAll();
-               pn_utama.add(new content_bg());
-               pn_utama.repaint();
-               pn_utama.revalidate();
-           }
-       });
-      
-       MenuItem menuTransaksi     = new MenuItem(iconTransaksi, false, null, "Transaksi", new ActionListener() {
-         @Override
-           public void actionPerformed(ActionEvent e) {
-               pn_utama.removeAll();
-               pn_utama.add(new Form_Transaksi());
-               pn_utama.repaint();
-               pn_utama.revalidate();
-           }  
-       });
-       
-       MenuItem menuBarang         = new MenuItem(iconBarang, false, null, "Barang", new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               pn_utama.removeAll();
-               pn_utama.add(new Form_Barang());
-               pn_utama.repaint();
-               pn_utama.revalidate();
-           }
-       });
-        
-       MenuItem menuPegawai        = new MenuItem(iconPegawai, false, null, "Pegawai", new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               pn_utama.removeAll();
-               pn_utama.add(new Form_Pegawai());
-               pn_utama.repaint();
-               pn_utama.revalidate();
-           }
-       });
-       
-       addMenu(menuHome);
-       addMenu(menuTransaksi);
-       addMenu(menuBarang);
-       addMenu(menuPegawai);
+        ImageIcon iconDashboard = new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\house-chimney (1).png");
+        ImageIcon iconTransaksi = new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\coins (1).png");
+        ImageIcon iconBarang = new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\box-alt (1).png");
+        ImageIcon iconPegawai = new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\user (1).png");
+    
+        MenuItem menuHome = new MenuItem(iconDashboard, false, null, "Halaman Utama", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pn_utama.removeAll();
+                pn_utama.add(new content_bg());
+                pn_utama.repaint();
+                pn_utama.revalidate();
+            }
+        });
+    
+        MenuItem menuTransaksi = new MenuItem(iconTransaksi, false, null, "Transaksi", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pn_utama.removeAll();
+                pn_utama.add(new Form_Transaksi());
+                pn_utama.repaint();
+                pn_utama.revalidate();
+            }
+        });
+    
+        MenuItem menuBarang = new MenuItem(iconBarang, false, null, "Barang", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pn_utama.removeAll();
+                pn_utama.add(new Form_Barang());
+                pn_utama.repaint();
+                pn_utama.revalidate();
+            }
+        });
+    
+        MenuItem menuPegawai = new MenuItem(iconPegawai, false, null, "Pegawai", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pn_utama.removeAll();
+                pn_utama.add(new Form_Pegawai());
+                pn_utama.repaint();
+                pn_utama.revalidate();
+            }
+        });
+    
+        addMenu(menuHome);
+        addMenu(menuTransaksi);
+        addMenu(menuBarang);
+        addMenu(menuPegawai);
     }
     
     private void addMenu(MenuItem...menu) {

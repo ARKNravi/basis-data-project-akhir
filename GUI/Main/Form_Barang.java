@@ -12,11 +12,32 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import CRUD.ReadBarang;
+
 /**
  *
  * @author Bagas
  */
 public class Form_Barang extends javax.swing.JPanel {
+        private void loadTableData() {
+        try {
+            // Call the method from ReadBarang class to fetch data
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("ID");
+            model.addColumn("Nama Barang");
+            model.addColumn("Harga");
+            model.addColumn("Total Sto");
+
+            // Fetch data from barang table
+            ReadBarang.bacaBarang(model);
+
+            // Set the model to the JTable
+            tableDataBarang.setModel(model);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception as needed
+        }
+    }
 
     /**
      * Creates new form Form_Barang
@@ -24,11 +45,14 @@ public class Form_Barang extends javax.swing.JPanel {
     public Form_Barang() {
         initComponents();
         
-        
+        // Set table properties
         tableDataBarang.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 12));
         tableDataBarang.getTableHeader().setOpaque(false);
-        tableDataBarang.getTableHeader().setForeground(new Color(0,0,0));
-        tableDataBarang.setRowHeight(25);  
+        tableDataBarang.getTableHeader().setForeground(new Color(0, 0, 0));
+        tableDataBarang.setRowHeight(25);
+
+        // Load data into the table
+        loadTableData();
     }
     
     /**

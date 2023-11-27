@@ -37,7 +37,6 @@ public class Login extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         exit_button = new javax.swing.JLabel();
@@ -47,27 +46,28 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-
+    
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\LoginForm\\lock (1).png")); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, -1, 40));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\LoginForm\\user (3) (1).png")); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 210, -1, 40));
-
-        exit_button.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\LoginForm\\Close.png")); // NOI18N
+    
+        getContentPane().setLayout(new java.awt.FlowLayout());
+    
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\LoginForm\\lock (1).png")); // NOI18N
+        getContentPane().add(jLabel3);
+    
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\LoginForm\\user (3) (1).png")); // NOI18N
+        getContentPane().add(jLabel4);
+    
+        exit_button.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\LoginForm\\Close.png")); // NOI18N
         exit_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 exit_buttonMousePressed(evt);
             }
         });
-        getContentPane().add(exit_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, -1, -1));
-
-        txt_username.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
+        getContentPane().add(exit_button);
+    
+        txt_username.setFont(new java.awt.Font("Lato", 0, 12));
         txt_username.setText("Username");
         txt_username.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -82,9 +82,9 @@ public class Login extends javax.swing.JFrame {
                 txt_usernameActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 210, 280, 40));
-
-        txt_password.setFont(new java.awt.Font("Lato", 0, 12)); // NOI18N
+        getContentPane().add(txt_username);
+    
+        txt_password.setFont(new java.awt.Font("Lato", 0, 12));
         txt_password.setText("Password");
         txt_password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -99,10 +99,10 @@ public class Login extends javax.swing.JFrame {
                 txt_passwordActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 280, 40));
-
+        getContentPane().add(txt_password);
+    
         jButton1.setBackground(new java.awt.Color(13, 14, 69));
-        jButton1.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Lato", 1, 14));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,17 +115,17 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, 110, 40));
-
-        jLabel2.setFont(new java.awt.Font("Lato", 3, 24)); // NOI18N
+        getContentPane().add(jButton1);
+    
+        jLabel2.setFont(new java.awt.Font("Lato", 3, 24));
         jLabel2.setText("UB MERCH LOGIN");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, -1, -1));
-
-        background.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\LoginForm\\PngItem_1127587 (3).png")); // NOI18N
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 910, 540));
-
+        getContentPane().add(jLabel2);
+    
+        background.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\LoginForm\\PngItem_1127587 (3).png")); // NOI18N
+        getContentPane().add(background);
+    
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
+    
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,12 +136,13 @@ public class Login extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 550, Short.MAX_VALUE)
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 0, 950, 550));
-
+    
+        getContentPane().add(jPanel1);
+    
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
+    // </editor-fold>//GEN-END:initComponents
 
     private void exit_buttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_buttonMousePressed
         // TODO add your handling code here:
