@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import org.w3c.dom.events.MouseEvent;
-
 import CRUD.ReadTransaksi;
 import Connection.SQLConnection;
 import Search.Search;
@@ -465,28 +463,33 @@ public class Form_Transaksi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_hapusBarangNota_button2ActionPerformed
 
-    private void buttonSearchMouseClicked(MouseEvent evt) {
-        try {
-            String keyword = txt_NoNota.getText();
-            ResultSet rs = Search.nota(keyword);
-
+    private void button_searchMousePressed(java.awt.event.ActionEvent evt) throws SQLException {
+        String keyword = txt_NoNota.getText();
+        ResultSet rs = Search.nota(keyword);
+        try (Connection connection = SQLConnection.getConnection()) {
+            // Call the pegawai method from the Search class to search for employees
+            ResultSet resultSet = Search.nota(keyword);
+    
+            // Update the table with search results
             DefaultTableModel model = new DefaultTableModel();
             tableDataTransaksi.setModel(model);
-
-            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                model.addColumn(rs.getMetaData().getColumnName(i));
+    
+            // Add columns to the table model
+            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                model.addColumn(resultSet.getMetaData().getColumnName(i));
             }
-
-            while (rs.next()) {
-                Object[] row = new Object[rs.getMetaData().getColumnCount()];
-                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                    row[i - 1] = rs.getObject(i);
+    
+            // Add rows to the table model
+            while (resultSet.next()) {
+                Object[] row = new Object[resultSet.getMetaData().getColumnCount()];
+                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                    row[i - 1] = resultSet.getObject(i);
                 }
                 model.addRow(row);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to search for transactions. Please check your inputs and try again.");
+            JOptionPane.showMessageDialog(null, "Failed to search for employee. Please check your inputs and try again.");
         }
     }
 
