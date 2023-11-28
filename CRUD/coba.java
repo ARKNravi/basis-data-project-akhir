@@ -78,7 +78,7 @@ public class coba {
             // Read.bacaTotalBelanja(conn, Read.ambilNoNotaTerakhir(conn));
 
             //Baca pegawai
-            ReadEmployee.bacaSemuaPegawai(conn);
+            // ReadEmployee.bacaSemuaPegawai(conn);
 
 
 

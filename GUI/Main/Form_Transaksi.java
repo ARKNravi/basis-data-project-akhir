@@ -2,10 +2,16 @@ package Main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import CRUD.ReadTransaksi;
+import Connection.SQLConnection;
+import Search.Search;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -464,6 +470,36 @@ public class Form_Transaksi extends javax.swing.JPanel {
     private void hapusBarangNota_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBarangNota_button2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_hapusBarangNota_button2ActionPerformed
+
+    private void button_searchMousePressed(java.awt.event.ActionEvent evt) throws SQLException {
+        String keyword = txt_NoNota.getText();
+        ResultSet rs = Search.nota(keyword);
+        try (Connection connection = SQLConnection.getConnection()) {
+            // Call the pegawai method from the Search class to search for employees
+            ResultSet resultSet = Search.nota(keyword);
+    
+            // Update the table with search results
+            DefaultTableModel model = new DefaultTableModel();
+            tableDataTransaksi.setModel(model);
+    
+            // Add columns to the table model
+            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                model.addColumn(resultSet.getMetaData().getColumnName(i));
+            }
+    
+            // Add rows to the table model
+            while (resultSet.next()) {
+                Object[] row = new Object[resultSet.getMetaData().getColumnCount()];
+                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                    row[i - 1] = resultSet.getObject(i);
+                }
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to search for employee. Please check your inputs and try again.");
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
