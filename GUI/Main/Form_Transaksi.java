@@ -156,7 +156,7 @@ public class Form_Transaksi extends javax.swing.JPanel {
             }
         });
 
-        button_search.setIcon(new javax.swing.ImageIcon("C:\\Penyimpanan Utama\\Downloads\\search (1).png")); // NOI18N
+        button_search.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\search (1).png")); // NOI18N
 
         txt_NoNota.setText("Cari No Nota");
         txt_NoNota.setBorder(null);
