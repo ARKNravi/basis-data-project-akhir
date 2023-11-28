@@ -1,7 +1,13 @@
 package Main; // Change the package from "Main" to "com.example"
 
+import java.sql.SQLException;
+
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle;
+
+import CRUD.CreateBarang;
+import Connection.SQLConnection;
+
 import javax.swing.JOptionPane;
 
 public class Form_TambahBarang extends javax.swing.JFrame {
@@ -12,7 +18,6 @@ public class Form_TambahBarang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txt_HargaSatuan;
-    private javax.swing.JTextField txt_KodeBarang;
     private javax.swing.JTextField txt_namaBarang;
 
     public Form_TambahBarang() {
@@ -23,7 +28,6 @@ public class Form_TambahBarang extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txt_KodeBarang = new javax.swing.JTextField();
         txt_HargaSatuan = new javax.swing.JTextField();
         txt_namaBarang = new javax.swing.JTextField();
         tambahBarangi_Button = new javax.swing.JButton();
@@ -50,9 +54,6 @@ public class Form_TambahBarang extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lato", 0, 16));
-        jLabel1.setText("Kode Barang");
-
         jLabel2.setFont(new java.awt.Font("Lato", 0, 16));
         jLabel2.setText("Nama Barang");
 
@@ -71,7 +72,6 @@ public class Form_TambahBarang extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(txt_KodeBarang, GroupLayout.PREFERRED_SIZE, 451, GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_namaBarang, GroupLayout.PREFERRED_SIZE, 451, GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_HargaSatuan, GroupLayout.PREFERRED_SIZE, 451, GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(63, Short.MAX_VALUE))
@@ -86,7 +86,6 @@ public class Form_TambahBarang extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_KodeBarang, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -114,9 +113,29 @@ public class Form_TambahBarang extends javax.swing.JFrame {
         pack();
     }
 
-    private void tambahBarangi_ButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // Your code for the button action
+private void tambahBarangi_ButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    // Get the name and price from the text fields
+    String barangName = txt_namaBarang.getText().trim();
+    int barangPrice = Integer.parseInt(txt_HargaSatuan.getText().trim());
+
+    // Check if name is empty or price is not a number
+    if (barangName.isEmpty() || barangPrice <= 0) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid name and price.");
+        return; // Exit the method if name or price is invalid
     }
+
+    try {
+        // Call the insertBarang method from the CreateBarang class to add new barang
+        CreateBarang.insertBarang(SQLConnection.getConnection(), barangName, barangPrice);
+
+        // Provide user feedback
+        JOptionPane.showMessageDialog(null, "Barang baru berhasil ditambahkan!");
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Failed to add new barang. Please check your inputs and try again.");
+    }
+}
+
 
     private void tambahBarangi_ButtonMousePressed(java.awt.event.MouseEvent evt) {
         JOptionPane.showMessageDialog(null, "Barang baru berhasil ditambahkan!");

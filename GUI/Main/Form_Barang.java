@@ -15,7 +15,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import CRUD.DeleteBarang;
 import CRUD.ReadBarang;
+import CRUD.UpdateBarang;
 import Search.Search;
 
 /**
@@ -307,7 +309,7 @@ public class Form_Barang extends javax.swing.JPanel {
         jLabel7.setText("Gudang");
 
         Gudang_comboBox.setBackground(new java.awt.Color(245, 245, 245));
-        Gudang_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Shopee", "Tokopedia" }));
+        Gudang_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offlen", "Shopee", "Tokopedia" }));
         Gudang_comboBox.setBorder(null);
 
         javax.swing.GroupLayout TambahBarangLayout = new javax.swing.GroupLayout(TambahBarang);
@@ -460,14 +462,73 @@ private void button_search_barangMouseClicked(java.awt.event.MouseEvent evt) {
 }
 
 
-    private void simpan_button1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpan_button1MousePressed
-        // Action ketika buton ditekan
-        JOptionPane.showMessageDialog(null, "Data barang berhasil di update!");
-    }//GEN-LAST:event_simpan_button1MousePressed
+private void simpan_button1MousePressed(java.awt.event.MouseEvent evt) {
+    // Get the values from the text fields and combo box
+    String kodeBarang = inputKodeBarang.getText().trim();
+    String namaBarang = inputNamaBarang.getText().trim();
+    String jumlahBarang = inputJumlahBarang.getText().trim();
+    String ukuranBarang = ukuran_comboBox.getSelectedItem().toString();
+    String gudang = Gudang_comboBox.getSelectedItem().toString();
 
-    private void tambahBarang_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahBarang_button1ActionPerformed
-        // Menghapus data row yang di pilih
-    }//GEN-LAST:event_tambahBarang_button1ActionPerformed
+    // Check if kodeBarang is empty
+    if (kodeBarang.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid 'kode_barang'.");
+        return; // Exit the method if kodeBarang is empty
+    }
+
+    Integer stok = null;
+    if (!jumlahBarang.isEmpty()) {
+        try {
+            stok = Integer.parseInt(jumlahBarang);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid number format for 'harga'.");
+            return; // Exit the method if jumlahBarang is not a valid number
+        }
+    }
+
+    try {
+        // Call the updateBarang method from the UpdateBarang class to update the barang
+        UpdateBarang.updateBarang(kodeBarang, namaBarang.isEmpty() ? null : namaBarang, ukuranBarang, gudang, stok);
+
+        // Provide user feedback
+        JOptionPane.showMessageDialog(null, "Data barang berhasil di update!");
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Failed to update barang. Please check your inputs and try again.");
+    }
+}
+
+
+private void tambahBarang_button1ActionPerformed(java.awt.event.ActionEvent evt) {
+    // Get the selected row index
+    int selectedRowIndex = tableDataBarang.getSelectedRow();
+
+    if (selectedRowIndex != -1) {
+        // Get the 'kode_barang' of the selected row
+        String kodeBarang = tableDataBarang.getValueAt(selectedRowIndex, 0).toString();
+
+        // Remove the first character 'P' from the kodeBarang
+        String realId = kodeBarang.substring(1);
+
+        try {
+            // Call the deleteBarang method from the DeleteBarang class to delete the barang
+            DeleteBarang.deleteBarang(realId);
+
+            // Provide user feedback
+            JOptionPane.showMessageDialog(null, "Data barang berhasil dihapus!");
+
+            // Remove the selected row from the table
+            ((DefaultTableModel) tableDataBarang.getModel()).removeRow(selectedRowIndex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to delete barang. Please try again.");
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Please select a row to delete.");
+    }
+}
+
+
 
     private void tambahBarang_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahBarang_button2ActionPerformed
         // TODO add your handling code here:
