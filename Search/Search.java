@@ -63,9 +63,9 @@ public class Search {
 
   }
 
-  public static ResultSet pegawai(Connection conn, String keyword) throws SQLException {
+  public static ResultSet pegawai(String keyword) throws SQLException {
     // Obtain the connection from SQLConnection class
-
+    Connection conn = SQLConnection.getConnection();
     String query = "SELECT dp.nip, p.nik, p.nama, j.nama_jabatan, p.pendidikan, p.tempat, p.tanggal_lahir, p.jenis_kelamin, p.npwp, p.nomor_rekening, dp.status_pegawai, dp.total_cuti, dp.total_izin, g.gaji, t.tunjangan "
         +
         "FROM detail_pegawai dp " +
