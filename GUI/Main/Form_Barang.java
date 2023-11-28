@@ -6,6 +6,8 @@ package Main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -14,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import CRUD.ReadBarang;
+import Search.Search;
 
 /**
  *
@@ -153,7 +156,7 @@ public class Form_Barang extends javax.swing.JPanel {
             }
         });
 
-        button_search_barang.setIcon(new javax.swing.ImageIcon("C:\\Penyimpanan Utama\\Downloads\\search (1).png")); // NOI18N
+        button_search_barang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\search (1).png")); // NOI18N
         button_search_barang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button_search_barangMouseClicked(evt);
@@ -429,9 +432,33 @@ public class Form_Barang extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txt_NoNotaFocusLost
 
-    private void button_search_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button_search_barangMouseClicked
-        // Ketika mouse ditekan, maka akan mengambil value dari txt_NoNota, untuk melakukan search 
-    }//GEN-LAST:event_button_search_barangMouseClicked
+private void button_search_barangMouseClicked(java.awt.event.MouseEvent evt) {
+    // Get the keyword from a JTextField (replace "yourTextField" with the actual variable name)
+    String keyword = txt_NoNota.getText().trim();
+
+    // Check if keyword is empty
+    if (keyword.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter a keyword for searching.");
+        return; // Exit the method if keyword is invalid
+    }
+
+    try {
+        // Call the barang method from the Search class to search for items
+        DefaultTableModel model = Search.barang(keyword);
+
+        // Update the table with search results
+        tableDataBarang.setModel(model);
+
+        // Provide user feedback
+        if (model.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "No items found with keyword: " + keyword);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Failed to search for items. Please check your inputs and try again.");
+    }
+}
+
 
     private void simpan_button1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpan_button1MousePressed
         // Action ketika buton ditekan

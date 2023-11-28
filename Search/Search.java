@@ -11,26 +11,44 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 public class Search {
-  public static ResultSet barang(Connection conn, String keyword) throws SQLException {
-    // Obtain the connection from SQLConnection class
+  public static DefaultTableModel barang(String keyword) throws SQLException {
+    DefaultTableModel model = new DefaultTableModel();
 
-    String query = "SELECT * FROM barang " +
-        "WHERE nama_barang LIKE ? OR kode_barang LIKE ? OR harga LIKE ?";
+    try (Connection conn = SQLConnection.getConnection()) {
+        String query = "SELECT * FROM barang " +
+            "WHERE nama_barang LIKE ? OR kode_barang LIKE ? OR harga LIKE ?";
 
-    // Using PreparedStatement to avoid SQL injection
-    try (PreparedStatement st = conn.prepareStatement(query)) {
-      // Setting parameters
-      st.setString(1, "%" + keyword + "%");
-      st.setString(2, "%" + keyword + "%");
-      st.setString(3, "%" + keyword + "%");
+        // Using PreparedStatement to avoid SQL injection
+        try (PreparedStatement st = conn.prepareStatement(query)) {
+          // Setting parameters
+          st.setString(1, "%" + keyword + "%");
+          st.setString(2, "%" + keyword + "%");
+          st.setString(3, "%" + keyword + "%");
 
-      // Executing the query
-      ResultSet rs = st.executeQuery();
-      return rs;
+          // Executing the query
+          try (ResultSet rs = st.executeQuery()) {
+              // Add columns to the table model
+              ResultSetMetaData metaData = rs.getMetaData();
+              int columnCount = metaData.getColumnCount();
+              for (int i = 1; i <= columnCount; i++) {
+                  model.addColumn(metaData.getColumnName(i));
+              }
+
+              // Add rows to the table model
+              while (rs.next()) {
+                  Object[] row = new Object[columnCount];
+                  for (int i = 1; i <= columnCount; i++) {
+                      row[i - 1] = rs.getObject(i);
+                  }
+                  model.addRow(row);
+              }
+          }
+        }
     }
-//hai
-  }
-  
+    return model;
+}
+
+
 public static DefaultTableModel nota(String keyword) throws SQLException {
     DefaultTableModel model = new DefaultTableModel();
 
