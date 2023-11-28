@@ -2,29 +2,19 @@ package Main;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import org.w3c.dom.events.MouseEvent;
 
 import CRUD.ReadTransaksi;
 import Connection.SQLConnection;
 import Search.Search;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-
-/**
- *
- * @author Bagas
- */
 public class Form_Transaksi extends javax.swing.JPanel {
 
         private void setTransactionsTableModel() {
@@ -44,19 +34,6 @@ public class Form_Transaksi extends javax.swing.JPanel {
         tableDataTransaksi.getTableHeader().setForeground(new Color(0,0,0));
         tableDataTransaksi.setRowHeight(25);  
         setTransactionsTableModel();
-
-        button_search.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                try {
-                    button_searchMousePressed(e);
-                } catch (SQLException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-            }
-        });
-        
     }
     
         
@@ -157,6 +134,7 @@ public class Form_Transaksi extends javax.swing.JPanel {
         });
 
         button_search.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\search (1).png")); // NOI18N
+        
 
         txt_NoNota.setText("Cari No Nota");
         txt_NoNota.setBorder(null);
@@ -487,41 +465,30 @@ public class Form_Transaksi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_hapusBarangNota_button2ActionPerformed
 
-    private void performSearch() {
-        String keyword = txt_NoNota.getText();
+    private void buttonSearchMouseClicked(MouseEvent evt) {
         try {
-            ResultSet resultSet = Search.nota(keyword);
-    
-            // Update the table with search results
+            String keyword = txt_NoNota.getText();
+            ResultSet rs = Search.nota(keyword);
+
             DefaultTableModel model = new DefaultTableModel();
             tableDataTransaksi.setModel(model);
-    
-            // Add columns to the table model
-            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                model.addColumn(resultSet.getMetaData().getColumnName(i));
+
+            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                model.addColumn(rs.getMetaData().getColumnName(i));
             }
-    
-            // Add rows to the table model
-            while (resultSet.next()) {
-                Object[] row = new Object[resultSet.getMetaData().getColumnCount()];
-                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                    row[i - 1] = resultSet.getObject(i);
+
+            while (rs.next()) {
+                Object[] row = new Object[rs.getMetaData().getColumnCount()];
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    row[i - 1] = rs.getObject(i);
                 }
                 model.addRow(row);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to search for transactions. Please check your inputs and try again.");
         }
     }
-
-    
-
-    private void button_searchMousePressed(MouseEvent e2) throws SQLException {
-       performSearch();
-    }
-
-
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -559,5 +526,4 @@ public class Form_Transaksi extends javax.swing.JPanel {
     private javax.swing.JTextField txt_NoNota;
     private javax.swing.JComboBox<String> ukuran_comboBox;
     private javax.swing.JComboBox<String> ukuran_comboBox2;
-    // End of variables declaration//GEN-END:variables
 }
