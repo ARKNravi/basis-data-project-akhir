@@ -2,9 +2,12 @@ package Main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -41,6 +44,19 @@ public class Form_Transaksi extends javax.swing.JPanel {
         tableDataTransaksi.getTableHeader().setForeground(new Color(0,0,0));
         tableDataTransaksi.setRowHeight(25);  
         setTransactionsTableModel();
+
+        button_search.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                try {
+                    button_searchMousePressed(e);
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
+        });
+        
     }
     
         
@@ -471,11 +487,9 @@ public class Form_Transaksi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_hapusBarangNota_button2ActionPerformed
 
-    private void button_searchMousePressed(java.awt.event.ActionEvent evt) throws SQLException {
+    private void performSearch() {
         String keyword = txt_NoNota.getText();
-        ResultSet rs = Search.nota(keyword);
-        try (Connection connection = SQLConnection.getConnection()) {
-            // Call the pegawai method from the Search class to search for employees
+        try {
             ResultSet resultSet = Search.nota(keyword);
     
             // Update the table with search results
@@ -497,9 +511,17 @@ public class Form_Transaksi extends javax.swing.JPanel {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to search for employee. Please check your inputs and try again.");
         }
     }
+
+    
+
+    private void button_searchMousePressed(MouseEvent e2) throws SQLException {
+       performSearch();
+    }
+
+
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
