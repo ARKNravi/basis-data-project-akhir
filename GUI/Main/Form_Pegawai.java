@@ -497,27 +497,12 @@ private boolean employeeExists(Connection connection, String nik) throws SQLExce
             return; // Exit the method if NIK is invalid
         }
     
-        try (Connection connection = SQLConnection.getConnection()) {
+        try {
             // Call the pegawai method from the Search class to search for employees
-            ResultSet resultSet = Search.pegawai(nikToSearch);
+            DefaultTableModel model = Search.pegawai(nikToSearch);
     
             // Update the table with search results
-            DefaultTableModel model = new DefaultTableModel();
             tableDataTransaksi.setModel(model);
-    
-            // Add columns to the table model
-            for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                model.addColumn(resultSet.getMetaData().getColumnName(i));
-            }
-    
-            // Add rows to the table model
-            while (resultSet.next()) {
-                Object[] row = new Object[resultSet.getMetaData().getColumnCount()];
-                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                    row[i - 1] = resultSet.getObject(i);
-                }
-                model.addRow(row);
-            }
     
             // Provide user feedback
             if (model.getRowCount() == 0) {
@@ -528,6 +513,7 @@ private boolean employeeExists(Connection connection, String nik) throws SQLExce
             JOptionPane.showMessageDialog(null, "Failed to search for employee. Please check your inputs and try again.");
         }
     }
+    
 
 
 private void tambahPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahPegawai_ButtonActionPerformed
