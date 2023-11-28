@@ -25,7 +25,7 @@ public class Search {
       ResultSet rs = st.executeQuery();
       return rs;
     }
-
+//hai
   }
 
   public static ResultSet nota(String keyword) throws SQLException {

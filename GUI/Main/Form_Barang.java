@@ -6,6 +6,7 @@ package Main;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,14 +20,15 @@ import CRUD.ReadBarang;
  * @author Bagas
  */
 public class Form_Barang extends javax.swing.JPanel {
-        private void loadTableData() {
+
+            private void loadTableData() {
         try {
             // Call the method from ReadBarang class to fetch data
             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("ID");
             model.addColumn("Nama Barang");
             model.addColumn("Harga");
-            model.addColumn("Total Sto");
+            model.addColumn("Total Stock");
 
             // Fetch data from barang table
             ReadBarang.bacaBarang(model);
@@ -38,6 +40,7 @@ public class Form_Barang extends javax.swing.JPanel {
             // Handle the exception as needed
         }
     }
+    
 
     /**
      * Creates new form Form_Barang
@@ -45,13 +48,11 @@ public class Form_Barang extends javax.swing.JPanel {
     public Form_Barang() {
         initComponents();
         
-        // Set table properties
+        
         tableDataBarang.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 12));
         tableDataBarang.getTableHeader().setOpaque(false);
-        tableDataBarang.getTableHeader().setForeground(new Color(0, 0, 0));
-        tableDataBarang.setRowHeight(25);
-
-        // Load data into the table
+        tableDataBarang.getTableHeader().setForeground(new Color(0,0,0));
+        tableDataBarang.setRowHeight(25);  
         loadTableData();
     }
     
@@ -75,10 +76,10 @@ public class Form_Barang extends javax.swing.JPanel {
         button_search_barang = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         tambahBarang_button1 = new javax.swing.JButton();
+        tambahBarang_button2 = new javax.swing.JButton();
         TambahBarang = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        simpan_button = new javax.swing.JButton();
         batal_button_simpan = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         inputKodeBarang = new javax.swing.JTextField();
@@ -90,6 +91,8 @@ public class Form_Barang extends javax.swing.JPanel {
         ukuran_comboBox = new javax.swing.JComboBox<>();
         simpan_button1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        Gudang_comboBox = new javax.swing.JComboBox<>();
 
         setLayout(new java.awt.CardLayout());
 
@@ -132,14 +135,14 @@ public class Form_Barang extends javax.swing.JPanel {
         tambahBarang_button.setBackground(new java.awt.Color(13, 14, 69));
         tambahBarang_button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
         tambahBarang_button.setForeground(new java.awt.Color(255, 255, 255));
-        tambahBarang_button.setText("TAMBAH / UPDATE");
+        tambahBarang_button.setText("UPDATE STOK");
         tambahBarang_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tambahBarang_buttonActionPerformed(evt);
             }
         });
 
-        txt_NoNota.setText("Cari No Nota");
+        txt_NoNota.setText("Cari barang");
         txt_NoNota.setBorder(null);
         txt_NoNota.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -167,6 +170,21 @@ public class Form_Barang extends javax.swing.JPanel {
             }
         });
 
+        tambahBarang_button2.setBackground(new java.awt.Color(13, 14, 69));
+        tambahBarang_button2.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        tambahBarang_button2.setForeground(new java.awt.Color(255, 255, 255));
+        tambahBarang_button2.setText("TAMBAH BARANG");
+        tambahBarang_button2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tambahBarang_button2MousePressed(evt);
+            }
+        });
+        tambahBarang_button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambahBarang_button2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout dataBarangLayout = new javax.swing.GroupLayout(dataBarang);
         dataBarang.setLayout(dataBarangLayout);
         dataBarangLayout.setHorizontalGroup(
@@ -175,19 +193,23 @@ public class Form_Barang extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1391, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1492, Short.MAX_VALUE)
                     .addGroup(dataBarangLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataBarangLayout.createSequentialGroup()
-                        .addComponent(tambahBarang_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
                         .addGroup(dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(dataBarangLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1161, Short.MAX_VALUE)
+                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dataBarangLayout.createSequentialGroup()
+                                .addComponent(tambahBarang_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tambahBarang_button, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
                                 .addComponent(tambahBarang_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_NoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_NoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(button_search_barang)))
                 .addGap(36, 36, 36))
@@ -209,7 +231,8 @@ public class Form_Barang extends javax.swing.JPanel {
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tambahBarang_button, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tambahBarang_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tambahBarang_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tambahBarang_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(119, Short.MAX_VALUE))
@@ -222,21 +245,6 @@ public class Form_Barang extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(13, 14, 69));
         jLabel2.setText("DATA BARANG");
-
-        simpan_button.setBackground(new java.awt.Color(13, 14, 69));
-        simpan_button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
-        simpan_button.setForeground(new java.awt.Color(255, 255, 255));
-        simpan_button.setText("SIMPAN");
-        simpan_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                simpan_buttonMousePressed(evt);
-            }
-        });
-        simpan_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simpan_buttonActionPerformed(evt);
-            }
-        });
 
         batal_button_simpan.setBackground(new java.awt.Color(13, 14, 69));
         batal_button_simpan.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
@@ -292,6 +300,13 @@ public class Form_Barang extends javax.swing.JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "KODE BARANG", "KOKIN15 T-SHIRT BRAWIJAYA UNIVERSITY WHITE", "KOKIN16 T-SHIRT BRAWIJAYA UNIVERSITY 1963 GRAY", "KOKIN18 T-SHIRT MESIN UB WHITE", "KOKIN17 T-SHIRT MESIN UB BLACK", "KOKIN28 T-SHIRT BRAWIJAYA UNIVERSITY NAVY", "KOHIN11 HOODIE UNIVERSITAS BRAWAIJAYA BLACK", "KOBOIN22 BASEBALL SHIRT UB WHITE", "KOKIN35 T-SHIRT BRAWIJAYA ARMY" }));
         jComboBox1.setBorder(null);
 
+        jLabel7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel7.setText("Gudang");
+
+        Gudang_comboBox.setBackground(new java.awt.Color(245, 245, 245));
+        Gudang_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Shopee", "Tokopedia" }));
+        Gudang_comboBox.setBorder(null);
+
         javax.swing.GroupLayout TambahBarangLayout = new javax.swing.GroupLayout(TambahBarang);
         TambahBarang.setLayout(TambahBarangLayout);
         TambahBarangLayout.setHorizontalGroup(
@@ -299,32 +314,36 @@ public class Form_Barang extends javax.swing.JPanel {
             .addGroup(TambahBarangLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TambahBarangLayout.createSequentialGroup()
+                    .addGroup(TambahBarangLayout.createSequentialGroup()
                         .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TambahBarangLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(36, 36, 36))
+                        .addContainerGap())
                     .addGroup(TambahBarangLayout.createSequentialGroup()
-                        .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(TambahBarangLayout.createSequentialGroup()
-                                .addComponent(simpan_button, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(simpan_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(batal_button_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(inputKodeBarang)
-                                .addComponent(inputNamaBarang)
-                                .addComponent(ukuran_comboBox, 0, 1223, Short.MAX_VALUE)
-                                .addComponent(inputJumlahBarang)))
-                        .addGap(0, 212, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(batal_button_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(inputKodeBarang)
+                            .addComponent(inputNamaBarang)
+                            .addComponent(ukuran_comboBox, 0, 1223, Short.MAX_VALUE)
+                            .addGroup(TambahBarangLayout.createSequentialGroup()
+                                .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(inputJumlahBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(Gudang_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(313, 313, 313))))
         );
         TambahBarangLayout.setVerticalGroup(
             TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,11 +352,11 @@ public class Form_Barang extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(simpan_button, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(batal_button_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(simpan_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(simpan_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -347,26 +366,26 @@ public class Form_Barang extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ukuran_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputJumlahBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addGroup(TambahBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TambahBarangLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ukuran_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputJumlahBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TambahBarangLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Gudang_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(404, Short.MAX_VALUE))
         );
 
         mainPanel.add(TambahBarang, "card2");
 
         add(mainPanel, "card2");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void simpan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpan_buttonActionPerformed
-        // Kode buat simpan barang baru ke database stok barang
-    }//GEN-LAST:event_simpan_buttonActionPerformed
 
     private void batal_button_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batal_button_simpanActionPerformed
         // Berfungsi untuk kembali ke form utama 
@@ -419,17 +438,26 @@ public class Form_Barang extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Data barang berhasil di update!");
     }//GEN-LAST:event_simpan_button1MousePressed
 
-    private void simpan_buttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpan_buttonMousePressed
-        // Action ketika buton ditekan
-        JOptionPane.showMessageDialog(null, "Data barang baru berhasil ditambah!");
-    }//GEN-LAST:event_simpan_buttonMousePressed
-
     private void tambahBarang_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahBarang_button1ActionPerformed
         // Menghapus data row yang di pilih
     }//GEN-LAST:event_tambahBarang_button1ActionPerformed
 
+    private void tambahBarang_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahBarang_button2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tambahBarang_button2ActionPerformed
+
+    private void tambahBarang_button2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahBarang_button2MousePressed
+        // TODO add your handling code here:
+        Form_TambahBarang tambahBarang = new Form_TambahBarang();
+        tambahBarang.setVisible(true);
+        tambahBarang.pack();
+        tambahBarang.setLocationRelativeTo(null);
+        tambahBarang.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_tambahBarang_button2MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Gudang_comboBox;
     private javax.swing.JPanel TambahBarang;
     private javax.swing.JButton batal_button_simpan;
     private javax.swing.JLabel button_search_barang;
@@ -444,16 +472,17 @@ public class Form_Barang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JButton simpan_button;
     private javax.swing.JButton simpan_button1;
     private javax.swing.JTable tableDataBarang;
     private javax.swing.JButton tambahBarang_button;
     private javax.swing.JButton tambahBarang_button1;
+    private javax.swing.JButton tambahBarang_button2;
     private javax.swing.JTextField txt_NoNota;
     private javax.swing.JComboBox<String> ukuran_comboBox;
     // End of variables declaration//GEN-END:variables
