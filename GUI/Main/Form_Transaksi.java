@@ -3,15 +3,17 @@
     import java.awt.Color;
     import java.awt.Font;
     import java.sql.Connection;
-    import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
-    import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;
     import javax.swing.table.DefaultTableModel;
 
     import CRUD.ReadTransaksi;
-    import Connection.SQLConnection;
+import CRUD.Transaksi;
+import Connection.SQLConnection;
     import Search.Search;
 
     public class Form_Transaksi extends javax.swing.JPanel {
@@ -72,7 +74,7 @@ import java.sql.SQLException;
             jLabel5 = new javax.swing.JLabel();
             inputNamaBarang = new javax.swing.JTextField();
             jLabel4 = new javax.swing.JLabel();
-            inputKodeBarang = new javax.swing.JTextField();
+            BeliDimana = new javax.swing.JComboBox<>();
             jLabel7 = new javax.swing.JLabel();
             ukuran_comboBox2 = new javax.swing.JComboBox<>();
             jLabel9 = new javax.swing.JLabel();
@@ -232,14 +234,15 @@ import java.sql.SQLException;
             jLabel4.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
             jLabel4.setText("Kode Barang");
 
-            inputKodeBarang.setBackground(new java.awt.Color(245, 245, 245));
-            inputKodeBarang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            BeliDimana.setBackground(new java.awt.Color(245, 245, 245));
+            BeliDimana.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offlen", "Shopee", "Tokopedia" }));
+            BeliDimana.setBorder(null);
 
             jLabel7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-            jLabel7.setText("No Nota");
+            jLabel7.setText("Beli Dimana");
 
             ukuran_comboBox2.setBackground(new java.awt.Color(245, 245, 245));
-            ukuran_comboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Shopee", "Tokopedia" }));
+            ukuran_comboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ShopeePay", "GoPay", "BCA","BNI","BRI","BSI", "Mandiri" }));
             ukuran_comboBox2.setBorder(null);
 
             jLabel9.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
@@ -247,10 +250,6 @@ import java.sql.SQLException;
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
                 },
                 new String [] {
                     "Kode Barang", "Ukuran", "Jumlah", "Sub Total"
@@ -338,7 +337,7 @@ import java.sql.SQLException;
                                         .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(inputKodeBarang, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(BeliDimana, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(ukuran_comboBox2, 0, 762, Short.MAX_VALUE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +379,7 @@ import java.sql.SQLException;
                         .addGroup(transaksiBaruLayout.createSequentialGroup()
                             .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                    .addComponent(inputKodeBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BeliDimana, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -426,15 +425,145 @@ import java.sql.SQLException;
         mainPanel.repaint();
         mainPanel.revalidate();
         }//GEN-LAST:event_TransaksiBaru_buttonActionPerformed
+        private void batal_button1ActionPerformed(java.awt.event.ActionEvent evt) {
+            String kodeBarangText = inputNamaBarang.getText();
+            String jumlahBarangText = inputJumlahBarang.getText();
+        
+            if (!kodeBarangText.isEmpty() && !jumlahBarangText.isEmpty()) {
+                int kodeBarang = Integer.parseInt(kodeBarangText);
+                int jumlahBarang = Integer.parseInt(jumlahBarangText);
+        
+                String ukuran = (String) ukuran_comboBox.getSelectedItem();
+        
+                try {
+                    // Query the barang and stok_barang tables to get the harga_barang and available stock
+                    String query = "SELECT barang.harga, stok_barang.offlen FROM barang JOIN stok_barang ON barang.kode_barang = stok_barang.kode_barang WHERE barang.kode_barang = ? AND stok_barang.ukuran = ?";
+                    Connection connection = SQLConnection.getConnection();
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.setInt(1, kodeBarang);
+                    preparedStatement.setString(2, ukuran);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()) {
+                        int harga_barang = resultSet.getInt("harga");
+                        int availableStock = resultSet.getInt("offlen");
+        
+                        if (availableStock >= jumlahBarang) {
+                            // Calculate the subtotal
+                            int subtotal = jumlahBarang * harga_barang;
+        
+                            // Check if a row with the same kode_barang, no_nota, and ukuran already exists
+                            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                            int rowCount = model.getRowCount();
+                            for (int i = 0; i < rowCount; i++) {
+                                if ((int) model.getValueAt(i, 0) == kodeBarang && model.getValueAt(i, 1).equals(ukuran)) {
+                                    // Update the jumlah_barang and subtotal in the existing row
+                                    int existingJumlahBarang = (int) model.getValueAt(i, 2);
+                                    model.setValueAt(existingJumlahBarang + jumlahBarang, i, 2);
+        
+                                    int existingSubtotal = (int) model.getValueAt(i, 3);
+                                    model.setValueAt(existingSubtotal + subtotal, i, 3);
+                                    return;
+                                }
+                            }
+        
+                            // If no existing row was found, add a new row to the table
+                            model.addRow(new Object[]{kodeBarang, ukuran, jumlahBarang, subtotal});
+                        } else {
+                            // Show a warning message
+                            JOptionPane.showMessageDialog(null, "Not enough stock available.", "Warning", JOptionPane.WARNING_MESSAGE);
+                        }
+                    } else {
+                        System.out.println("Kode Barang or Ukuran not found in barang or stok_barang table.");
+                    }
+                } catch (SQLException e) {
+                    System.out.println("SQL Exception: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Please fill in all fields.");
+            }
+        }
+        
+        private void tambahTransaksi_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+            HashMap<String, String> metodePembelianMap = new HashMap<>();
+            metodePembelianMap.put("ShopeePay", "1");
+            metodePembelianMap.put("GoPay", "2");
+            metodePembelianMap.put("BCA", "3");
+            metodePembelianMap.put("BNI", "4");
+            metodePembelianMap.put("BRI", "5");
+            metodePembelianMap.put("BSI", "6");
+            metodePembelianMap.put("Mandiri", "7");
+        
+            String namaMetode = (String) ukuran_comboBox2.getSelectedItem();
+            String kodeMetode = metodePembelianMap.get(namaMetode);
+            String beliDimana = (String) BeliDimana.getSelectedItem();
+        
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            int rowCount = model.getRowCount();
+        
+            for (int i = 0; i < rowCount; i++) {
+                int kodeBarang = (int) model.getValueAt(i, 0);
+                String ukuran = (String) model.getValueAt(i, 1);
+                int jumlahBarang = (int) model.getValueAt(i, 2);
+        
+                try {
+                    String query = "SELECT harga FROM barang WHERE kode_barang = ?";
+                    Connection connection = SQLConnection.getConnection();
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.setInt(1, kodeBarang);
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()) {
+                        int harga_barang = resultSet.getInt("harga");
+        
+                        Transaksi transaksi = new Transaksi();
+                        int total_barang = 1;
+                        int total_harga = 0; 
+                        if (currentNota == -1) {
+                            currentNota = transaksi.createNota(total_barang, total_harga, kodeMetode);
+                        }
+        
+                        int total_harga_barang = jumlahBarang * harga_barang;
+                        transaksi.createTransaksi(currentNota, kodeBarang, ukuran, jumlahBarang, total_harga_barang);
+        
+                        // Update the stok_barang table to decrease the stock
+                        query = "UPDATE stok_barang SET " + beliDimana.toLowerCase() + " = " + beliDimana.toLowerCase() + " - ? WHERE kode_barang = ? AND ukuran = ?";
+                        preparedStatement = connection.prepareStatement(query);
+                        preparedStatement.setInt(1, jumlahBarang);
+                        preparedStatement.setInt(2, kodeBarang);
+                        preparedStatement.setString(3, ukuran);
+                        preparedStatement.executeUpdate();
+                    } else {
+                        System.out.println("Kode Barang not found in barang table.");
+                    }
+                } catch (SQLException e) {
+                    System.out.println("SQL Exception: " + e.getMessage());
+                }
+            }
+        
+            // Clear the table
+            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {},
+                new String [] {
+                    "Kode Barang", "Ukuran", "Jumlah", "Sub Total"
+                }
+            ));
+        }
+        
+        
+        
 
-        private void tambahTransaksi_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahTransaksi_buttonActionPerformed
-            // Button buat tambah transaski ke dalam riwayat
-        }//GEN-LAST:event_tambahTransaksi_buttonActionPerformed
-
-        private void HitungTotal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HitungTotal_buttonActionPerformed
-            // button buat update nota, supaya bisa liat harga total sementara
-        }//GEN-LAST:event_HitungTotal_buttonActionPerformed
-
+        private void HitungTotal_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            int rowCount = model.getRowCount();
+        
+            int totalHarga = 0;
+            for (int i = 0; i < rowCount; i++) {
+                totalHarga += (int) model.getValueAt(i, 3);
+            }
+        
+            System.out.println(Integer.toString(totalHarga));
+            TOTALHARGA.setText(Integer.toString(totalHarga));
+        }
+        
         private void batal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batal_buttonActionPerformed
         mainPanel.removeAll();
         mainPanel.repaint();
@@ -460,14 +589,64 @@ import java.sql.SQLException;
                 txt_NoNota.setText("Password");
             }
         }//GEN-LAST:event_txt_NoNotaFocusLost
-
-        private void batal_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batal_button1ActionPerformed
-            // TODO add your handling code here:
-        }//GEN-LAST:event_batal_button1ActionPerformed
-
-        private void hapusBarangNota_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBarangNota_button2ActionPerformed
-            // TODO add your handling code here:
-        }//GEN-LAST:event_hapusBarangNota_button2ActionPerformed
+        public void updateTable(int no_nota) {
+            String query = "SELECT transaksi.kode_barang, transaksi.ukuran, transaksi.jumlah_barang, transaksi.total_harga_barang FROM transaksi WHERE transaksi.no_nota = ?";
+        
+            try {
+                Connection connection = SQLConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                preparedStatement.setInt(1, no_nota);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                resultSet.last();
+                int rowCount = resultSet.getRow();
+                resultSet.beforeFirst();
+                Object[][] data = new Object[rowCount][4];
+                int rowIndex = 0;
+                while (resultSet.next()) {
+                    data[rowIndex][0] = resultSet.getInt("kode_barang");
+                    data[rowIndex][1] = resultSet.getString("ukuran");
+                    data[rowIndex][2] = resultSet.getInt("jumlah_barang");
+                    data[rowIndex][3] = resultSet.getInt("total_harga_barang");
+                    rowIndex++;
+                }
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                int currentRowCount = model.getRowCount();
+                Object[][] currentData = new Object[currentRowCount][4];
+                for (int i = 0; i < currentRowCount; i++) {
+                    currentData[i][0] = model.getValueAt(i, 0);
+                    currentData[i][1] = model.getValueAt(i, 1);
+                    currentData[i][2] = model.getValueAt(i, 2);
+                    currentData[i][3] = model.getValueAt(i, 3);
+                }
+                Object[][] combinedData = new Object[currentRowCount + rowCount][4];
+                System.arraycopy(currentData, 0, combinedData, 0, currentRowCount);
+                System.arraycopy(data, 0, combinedData, currentRowCount, rowCount);
+        
+                jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                    combinedData,
+                    new String [] {
+                        "Kode Barang", "Ukuran", "Jumlah", "Sub Total"
+                    }
+                ));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        int currentNota = -1;
+        
+        private void hapusBarangNota_button2ActionPerformed(java.awt.event.ActionEvent evt) {
+            // Get the selected row
+            int selectedRow = jTable1.getSelectedRow();
+        
+            if (selectedRow != -1) {
+                // Remove the selected row
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.removeRow(selectedRow);
+            } else {
+                System.out.println("No row selected.");
+            }
+        }
+        
 
         private void button_searchMouseClicked(java.awt.event.MouseEvent evt) {
             try {
@@ -482,8 +661,6 @@ import java.sql.SQLException;
             }
         }
         
-        
-
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton HitungTotal_button;
@@ -494,7 +671,7 @@ import java.sql.SQLException;
         private javax.swing.JLabel button_search;
         private javax.swing.JButton hapusBarangNota_button2;
         private javax.swing.JTextField inputJumlahBarang;
-        private javax.swing.JTextField inputKodeBarang;
+        private javax.swing.JComboBox<String> BeliDimana;
         private javax.swing.JTextField inputNamaBarang;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel jLabel2;

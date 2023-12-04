@@ -2,7 +2,8 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "/Users/fauzanghaza/Coding/Setup/jtds-1.3.1-dist/jtds-1.3.1.jar",
-        "c:\\Users\\rkunt\\OneDrive\\Desktop\\mssql-jdbc-12.4.2.jre11.jar"
+        "c:\\Users\\rkunt\\OneDrive\\Desktop\\mssql-jdbc-12.4.2.jre11.jar",
+        "c:\\Recovery\\Project\\mssql-jdbc-12.4.2.jre11.jar"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }
