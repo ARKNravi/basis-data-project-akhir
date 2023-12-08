@@ -1,7 +1,5 @@
 package CRUD;
 
-import Connection.SQLConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,25 +8,6 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class CreateTransaksi {
-
-    public static void main(String[] args) {
-        try (Connection connection = SQLConnection.getConnection()) {
-            // Display available payment methods
-            displayPaymentMethods(connection);
-
-            // Get user input for transaction details
-            int selectedPaymentMethod = getSelectedPaymentMethod();
-
-            // Create a new transaction and retrieve the generated nota ID
-            int notaId = createTransaction(connection, selectedPaymentMethod);
-
-            // Display success message with the generated nota ID
-            System.out.println("Transaction successfully created! Nota ID: " + notaId);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Failed to create transaction. Please check your inputs and try again.");
-        }
-    }
 
     private static void displayPaymentMethods(Connection connection) throws SQLException {
         System.out.println("Available Payment Methods:");

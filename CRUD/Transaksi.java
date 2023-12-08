@@ -1,20 +1,15 @@
 package CRUD;
 
-import Connection.SQLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Transaksi {
-    private Connection connection;
+    private Connection conn;
 
-    public Transaksi() {
-        try {
-            this.connection = SQLConnection.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public Transaksi(Connection conn) {
+        this.conn = conn;
     }
 
     public void createTransaksi(int no_nota, int kode_barang, String ukuran, int jumlah_barang, int total_harga_barang) {
@@ -24,7 +19,7 @@ public class Transaksi {
                        "INSERT INTO transaksi (no_nota, kode_barang, ukuran, jumlah_barang, total_harga_barang) VALUES (?, ?, ?, ?, ?)";
     
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, no_nota);
             preparedStatement.setInt(2, kode_barang);
             preparedStatement.setString(3, ukuran);
@@ -50,7 +45,7 @@ public int createNota(int total_barang, int total_harga, String kode_metode) {
     int no_nota = 0;
 
     try {
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
         preparedStatement.setInt(1, total_barang);
         preparedStatement.setInt(2, total_harga);
         preparedStatement.setString(3, kode_metode);

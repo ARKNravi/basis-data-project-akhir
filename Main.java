@@ -1,12 +1,16 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import Connection.SQLConnection;
 import LoginForm.Login;
 import Main.MenuUtama;
 
 public class Main {
-    
-    static String os = "/"; //input path
 
-    public static void main(String args[]) {
-        
+    public static void main(String args[]) throws SQLException, ClassNotFoundException {
+        String os = "/"; // input path
+        Connection conn = SQLConnection.getConnection();
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -27,8 +31,8 @@ public class Main {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new MenuUtama(os).setVisible(true);
+            new MenuUtama(conn, os).setVisible(true);
         });
     }
-    
+
 }

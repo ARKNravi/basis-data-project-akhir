@@ -161,7 +161,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Username or Password Incorrect / Empty");
             }else{
                 this.dispose();
-                new MenuUtama(os).show();
+                new MenuUtama(conn, os).show();
              
                 }
         }catch(Exception e){
