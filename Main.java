@@ -2,7 +2,8 @@ import Main.MenuUtama;
 
 public class Main {
     
-    static String path = ""; //input path
+    // static String path = "/Users/fauzanghaza/Documents/GitHub/basis-data-project-akhir/"; //input path
+    static String os = "/"; // mac os : /;  Windows : \\;
 
     public static void main(String args[]) {
 
@@ -23,10 +24,9 @@ public class Main {
             java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new MenuUtama(path).setVisible(true);
+            new MenuUtama(os).setVisible(true);
         });
     }
 }

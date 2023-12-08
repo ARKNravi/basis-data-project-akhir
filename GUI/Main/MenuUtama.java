@@ -26,10 +26,10 @@ public class MenuUtama extends javax.swing.JFrame {
     /**
      * Creates new form MenuUtama
      */
-    public MenuUtama(String path) {
-        initComponents(path);
+    public MenuUtama( String os) {
+        initComponents(os);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        execute(path);
+        execute(os);
     }
 
     /**
@@ -39,7 +39,7 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(String path) {
+    private void initComponents( String os) {
 
         pn_navbar = new JPanel(); // Use a standard JPanel
         jLabel3 = new javax.swing.JLabel();
@@ -52,8 +52,8 @@ public class MenuUtama extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
+            public void windowOpened(java.awt.event.WindowEvent evt,  String os) {
+                formWindowOpened(evt, os);
             }
         });
 
@@ -64,7 +64,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel3.setForeground(new Color(255, 255, 255));
         jLabel3.setText("UB MERCH DATABASES SYSTEM");
 
-        jLabel1.setIcon(new ImageIcon(path + "GUI\\image_main\\BRONE_UB-removebg-preview (1).png")); // NOI18N
+        jLabel1.setIcon(new ImageIcon( "GUI" + os + "image_main" + os + "BRONE_UB-removebg-preview (1).png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout pn_navbarLayout = new javax.swing.GroupLayout(pn_navbar);
@@ -131,9 +131,9 @@ public class MenuUtama extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened(java.awt.event.WindowEvent evt,  String os) {//GEN-FIRST:event_formWindowOpened
         // Ubah content di pn_utama
-        pn_utama.add(new content_bg());
+        pn_utama.add(new content_bg(os));
         pn_utama.repaint();
         pn_utama.revalidate();        
     }
@@ -145,17 +145,17 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPanel pn_utama;
     // End of variables declaration//GEN-END:variables
 
-    private void execute(String path) {
-        ImageIcon iconDashboard = new ImageIcon(path + "GUI\\image_main\\house-chimney (1).png");
-        ImageIcon iconTransaksi = new ImageIcon(path + "GUI\\image_main\\coins (1).png");
-        ImageIcon iconBarang = new ImageIcon(path + "GUI\\image_main\\box-alt (1).png");
-        ImageIcon iconPegawai = new ImageIcon(path + "GUI\\image_main\\user (1).png");
+    private void execute( String os) {
+        ImageIcon iconDashboard = new ImageIcon( "GUI" + os + "image_main" + os + "house-chimney (1).png");
+        ImageIcon iconTransaksi = new ImageIcon( "GUI" + os + "image_main" + os + "coins (1).png");
+        ImageIcon iconBarang = new ImageIcon( "GUI" + os + "image_main" + os + "box-alt (1).png");
+        ImageIcon iconPegawai = new ImageIcon( "GUI" + os + "image_main" + os + "user (1).png");
     
         MenuItem menuHome = new MenuItem(iconDashboard, false, null, "Halaman Utama", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pn_utama.removeAll();
-                pn_utama.add(new content_bg());
+                pn_utama.add(new content_bg(os));
                 pn_utama.repaint();
                 pn_utama.revalidate();
             }
@@ -165,7 +165,7 @@ public class MenuUtama extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pn_utama.removeAll();
-                pn_utama.add(new Form_Transaksi());
+                pn_utama.add(new Form_Transaksi(os));
                 pn_utama.repaint();
                 pn_utama.revalidate();
             }
@@ -175,7 +175,7 @@ public class MenuUtama extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pn_utama.removeAll();
-                pn_utama.add(new Form_Barang());
+                pn_utama.add(new Form_Barang(os));
                 pn_utama.repaint();
                 pn_utama.revalidate();
             }
@@ -185,7 +185,7 @@ public class MenuUtama extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pn_utama.removeAll();
-                pn_utama.add(new Form_Pegawai());
+                pn_utama.add(new Form_Pegawai(os));
                 pn_utama.repaint();
                 pn_utama.revalidate();
             }
