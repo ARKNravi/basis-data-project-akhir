@@ -263,13 +263,13 @@ public class Form_Transaksi extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
         jLabel7.setText("Beli Dimana");
 
-        ukuran_comboBox2.setBackground(new java.awt.Color(245, 245, 245));
-        ukuran_comboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "ShopeePay", "GoPay", "BCA", "BNI", "BRI", "BSI", "Mandiri" }));
-        ukuran_comboBox2.setBorder(null);
+         ukuran_comboBox2.setBackground(new java.awt.Color(245, 245, 245));
+         ukuran_comboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(
+                 new String[] { "ShopeePay", "GoPay", "BCA", "BNI", "BRI", "BSI", "Mandiri" }));
+         ukuran_comboBox2.setBorder(null);
 
-        jLabel9.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jLabel9.setText("Metode Pembayaran");
+         jLabel9.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+         jLabel9.setText("Metode Pembayaran");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
@@ -596,15 +596,12 @@ public class Form_Transaksi extends javax.swing.JPanel {
 
     private void tambahTransaksi_buttonActionPerformed(java.awt.event.ActionEvent evt) {
         HashMap<String, String> metodePembelianMap = new HashMap<>();
-        metodePembelianMap.put("ShopeePay", "1");
-        metodePembelianMap.put("GoPay", "2");
-        metodePembelianMap.put("BCA", "3");
-        metodePembelianMap.put("BNI", "4");
-        metodePembelianMap.put("BRI", "5");
-        metodePembelianMap.put("BSI", "6");
-        metodePembelianMap.put("Mandiri", "7");
+        metodePembelianMap.put("Shopee", "SP");
+        metodePembelianMap.put("Tokopedia", "TP");
+        metodePembelianMap.put("Offline", "OF");
 
-        String namaMetode = (String) ukuran_comboBox2.getSelectedItem();
+
+        String namaMetode = (String) ukuran_comboBox.getSelectedItem();
         String kodeMetode = metodePembelianMap.get(namaMetode);
         String beliDimana = (String) BeliDimana.getSelectedItem();
 
