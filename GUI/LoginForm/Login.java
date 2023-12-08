@@ -20,8 +20,8 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Login() {
-        initComponents();
+    public Login(String os) {
+        initComponents(os);
     }
     
     void cleanTextField() {
@@ -36,7 +36,7 @@ public class Login extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String os) {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         exit_button = new javax.swing.JLabel();
@@ -53,13 +53,13 @@ public class Login extends javax.swing.JFrame {
     
         getContentPane().setLayout(new java.awt.FlowLayout());
     
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\LoginForm\\lock (1).png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("GUI"+os+"LoginForm"+os+"lock (1).png")); // NOI18N
         getContentPane().add(jLabel3);
     
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\LoginForm\\user (3) (1).png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("GUI"+os+"LoginForm"+os+"user (3) (1).png")); // NOI18N
         getContentPane().add(jLabel4);
     
-        exit_button.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\LoginForm\\Close.png")); // NOI18N
+        exit_button.setIcon(new javax.swing.ImageIcon("GUI"+os+"LoginForm"+os+"Close.png")); // NOI18N
         exit_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 exit_buttonMousePressed(evt);
@@ -112,7 +112,7 @@ public class Login extends javax.swing.JFrame {
         });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton1ActionPerformed(evt, os);
             }
         });
         getContentPane().add(jButton1);
@@ -121,7 +121,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("UB MERCH LOGIN");
         getContentPane().add(jLabel2);
     
-        background.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\LoginForm\\PngItem_1127587 (3).png")); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon("GUI"+os+"LoginForm"+os+"PngItem_1127587 (3).png")); // NOI18N
         getContentPane().add(background);
     
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,14 +149,14 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_exit_buttonMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt, String os) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String username = txt_username.getText();
         String password = txt_password.getText();
         
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS:1433;databaseName=project_basdat;encrypt=true;trustServerCertificate=true", "admin", "123");
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost//SQLEXPRESS:1433;databaseName=project_basdat;encrypt=true;trustServerCertificate=true", "admin", "123");
             String sqlquery = "SELECT * FROM userlog WHERE username = '"+username+"' AND userpassword = '"+password+"'";
             PreparedStatement pst = con.prepareStatement(sqlquery);
             ResultSet rs = pst.executeQuery();
@@ -164,7 +164,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Username or Password Incorret / Empty");
             }else{
                 this.dispose();
-                new MenuUtama().show();
+                new MenuUtama(os).show();
              
                 }
         }catch(Exception e){
@@ -219,40 +219,6 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MousePressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
