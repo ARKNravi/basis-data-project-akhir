@@ -13,8 +13,8 @@ public class content_bg extends javax.swing.JPanel {
     /**
      * Creates new form content_bg
      */
-    public content_bg() {
-        initComponents();
+    public content_bg(String os) {
+        initComponents(os);
     }
 
     /**
@@ -24,7 +24,7 @@ public class content_bg extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String os) {
 
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
@@ -34,9 +34,9 @@ public class content_bg extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        logo.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\logo (1).png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon("GUI"+ os +"image_main"+ os +"logo (1).png")); // NOI18N
 
-        gambar.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (2).png")); // NOI18N
+        gambar.setIcon(new javax.swing.ImageIcon("GUI"+ os +"image_main"+ os +"2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (2).png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

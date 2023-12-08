@@ -37,40 +37,4 @@ public class CreateBarang {
         }
 
     }
-
-
-
-    public static void main(String[] args) {
-        try {
-            // Get a database connection
-            Connection conn = SQLConnection.getConnection();
-
-            // Get user input
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter the name of the barang: ");
-            String barangName = scanner.nextLine();
-            System.out.print("Enter the price of the barang: ");
-            int barangPrice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline left by nextInt()
-
-            // Call the method to insert barang
-            insertBarang(conn, barangName, barangPrice);
-
-            // Get user input for nota
-            System.out.print("Enter the total number of barang: ");
-            int totalBarang = scanner.nextInt();
-            System.out.print("Enter the total price of barang: ");
-            int totalHarga = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline left by nextInt()
-            System.out.print("Enter the payment method: ");
-            String paymentMethod = scanner.nextLine();
-
-            // Call the method to insert nota
-
-            // Close the connection
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

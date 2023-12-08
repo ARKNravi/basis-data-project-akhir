@@ -50,8 +50,8 @@ public class Form_Barang extends javax.swing.JPanel {
     /**
      * Creates new form Form_Barang
      */
-    public Form_Barang() {
-        initComponents();
+    public Form_Barang(String os) {
+        initComponents( os);
         
         
         tableDataBarang.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 12));
@@ -68,7 +68,7 @@ public class Form_Barang extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String os) {
 
         mainPanel = new javax.swing.JPanel();
         dataBarang = new javax.swing.JPanel();
@@ -158,7 +158,7 @@ public class Form_Barang extends javax.swing.JPanel {
             }
         });
 
-        button_search_barang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\search (1).png")); // NOI18N
+        button_search_barang.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"search (1).png")); // NOI18N
         button_search_barang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button_search_barangMouseClicked(evt);

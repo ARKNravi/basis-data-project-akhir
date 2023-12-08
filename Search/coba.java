@@ -13,9 +13,5 @@ public class coba {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = Konek.getConnection(url, userName, password);
-        ResultSet rs = Search.barang(conn, "a");
-        rs.next();
-        System.out.println(rs.getString(2));
-
     }
 }

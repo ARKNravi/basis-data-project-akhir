@@ -27,8 +27,8 @@ import Connection.SQLConnection;
         /**
          * Creates new form Form_Transaksi
          */
-        public Form_Transaksi() {
-            initComponents();
+        public Form_Transaksi( String os) {
+            initComponents(os);
             
             tableDataTransaksi.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 12));
             tableDataTransaksi.getTableHeader().setOpaque(false);
@@ -51,7 +51,7 @@ import Connection.SQLConnection;
          */
         @SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-        private void initComponents() {
+        private void initComponents( String os) {
 
             mainPanel = new javax.swing.JPanel();
             riwayatTransaksi = new javax.swing.JPanel();
@@ -134,7 +134,7 @@ import Connection.SQLConnection;
                 }
             });
 
-            button_search.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\search (1).png")); // NOI18N
+            button_search.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"search (1).png")); // NOI18N
             button_search.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     button_searchMouseClicked(evt);

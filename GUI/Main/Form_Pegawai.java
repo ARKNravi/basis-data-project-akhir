@@ -53,7 +53,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
         }
     }
 
-    public Form_Pegawai() {
+    public Form_Pegawai(String os) {
         initComponents();
         populateTable();
     }
