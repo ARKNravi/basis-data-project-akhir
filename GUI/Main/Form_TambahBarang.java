@@ -20,15 +20,12 @@ public class Form_TambahBarang extends javax.swing.JFrame {
     private javax.swing.JTextField txt_HargaSatuan;
     private javax.swing.JTextField txt_namaBarang;
 
-    Connection conn;
-
-    public Form_TambahBarang() {
-        this.conn = conn;
-        initComponents();
+    public Form_TambahBarang(Connection conn) {
+        initComponents(conn);
     }
 
     @SuppressWarnings("unchecked")
-    private void initComponents() {
+    private void initComponents(Connection conn) {
 
         jPanel1 = new javax.swing.JPanel();
         txt_HargaSatuan = new javax.swing.JTextField();
@@ -53,7 +50,7 @@ public class Form_TambahBarang extends javax.swing.JFrame {
         });
         tambahBarangi_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tambahBarangi_ButtonActionPerformed(evt);
+                tambahBarangi_ButtonActionPerformed(evt, conn);
             }
         });
 
@@ -119,7 +116,7 @@ public class Form_TambahBarang extends javax.swing.JFrame {
         pack();
     }
 
-    private void tambahBarangi_ButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void tambahBarangi_ButtonActionPerformed(java.awt.event.ActionEvent evt, Connection conn) {
         // Get the name and price from the text fields
         String barangName = txt_namaBarang.getText().trim();
         int barangPrice = Integer.parseInt(txt_HargaSatuan.getText().trim());
@@ -146,11 +143,4 @@ public class Form_TambahBarang extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Barang baru berhasil ditambahkan!");
     }
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Form_TambahBarang().setVisible(true);
-            }
-        });
-    }
 }

@@ -624,7 +624,7 @@ public class Form_Barang extends javax.swing.JPanel {
 
         private void simpan_button1MousePressed(java.awt.event.MouseEvent evt) {
                 // Get the values from the text fields and combo box
-                String kodeBarang = inputKodeBarang.getText().trim();
+                String kodeBarang = inputKodeBarang.getText().trim().replace("p", "");
                 String namaBarang = inputNamaBarang.getText().trim();
                 String jumlahBarang = inputJumlahBarang.getText().trim();
                 String ukuranBarang = ukuran_comboBox.getSelectedItem().toString();
@@ -695,7 +695,7 @@ public class Form_Barang extends javax.swing.JPanel {
 
         private void tambahBarang_button2MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tambahBarang_button2MousePressed
                 // TODO add your handling code here:
-                Form_TambahBarang tambahBarang = new Form_TambahBarang();
+                Form_TambahBarang tambahBarang = new Form_TambahBarang(conn);
                 tambahBarang.setVisible(true);
                 tambahBarang.pack();
                 tambahBarang.setLocationRelativeTo(null);

@@ -536,7 +536,7 @@ public class Form_Transaksi extends javax.swing.JPanel {
     }// GEN-LAST:event_TransaksiBaru_buttonActionPerformed
 
     private void batal_button1ActionPerformed(java.awt.event.ActionEvent evt) {
-        String kodeBarangText = inputNamaBarang.getText();
+        String kodeBarangText = inputNamaBarang.getText().replace("p", "");
         String jumlahBarangText = inputJumlahBarang.getText();
 
         if (!kodeBarangText.isEmpty() && !jumlahBarangText.isEmpty()) {
