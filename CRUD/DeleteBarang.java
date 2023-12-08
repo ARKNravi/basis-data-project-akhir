@@ -9,43 +9,34 @@ import java.util.Scanner;
 import Connection.SQLConnection;
 
 public class DeleteBarang {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the 'kode_barang' of the item you want to delete:");
-        int kode_barang = scanner.nextInt();
+    public static void deleteBarang(String kode_barang) throws SQLException {
+        // Obtain the connection from SQLConnection class
+        try (Connection conn = SQLConnection.getConnection()) {
+            String checkKodeBarangSql = "SELECT COUNT(*) FROM barang WHERE kode_barang = ?";
 
-        String checkKodeBarangSql = "SELECT COUNT(*) FROM barang WHERE kode_barang = ?";
+            try (PreparedStatement checkKodeBarangStmt = conn.prepareStatement(checkKodeBarangSql)) {
+                checkKodeBarangStmt.setString(1, kode_barang);
 
-        try (Connection con = SQLConnection.getConnection();
-             PreparedStatement checkKodeBarangStmt = con.prepareStatement(checkKodeBarangSql)) {
+                try (ResultSet rs = checkKodeBarangStmt.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        String deleteStokBarangSql = "DELETE FROM stok_barang WHERE kode_barang = ?";
+                        String deleteBarangSql = "DELETE FROM barang WHERE kode_barang = ?";
 
-            checkKodeBarangStmt.setInt(1, kode_barang);
+                        try (PreparedStatement deleteStokBarangStmt = conn.prepareStatement(deleteStokBarangSql)) {
+                            deleteStokBarangStmt.setString(1, kode_barang);
+                            deleteStokBarangStmt.executeUpdate();
+                        }
 
-            try (ResultSet rs = checkKodeBarangStmt.executeQuery()) {
-                if (rs.next() && rs.getInt(1) > 0) {
-                    String deleteStokBarangSql = "DELETE FROM stok_barang WHERE kode_barang = ?";
-                    String deleteBarangSql = "DELETE FROM barang WHERE kode_barang = ?";
-
-                    try (PreparedStatement deleteStokBarangStmt = con.prepareStatement(deleteStokBarangSql)) {
-                        deleteStokBarangStmt.setInt(1, kode_barang);
-
-                        int rowAffected = deleteStokBarangStmt.executeUpdate();
-                        System.out.println(String.format("Row affected in 'stok_barang' table %d", rowAffected));
+                        try (PreparedStatement deleteBarangStmt = conn.prepareStatement(deleteBarangSql)) {
+                            deleteBarangStmt.setString(1, kode_barang);
+                            deleteBarangStmt.executeUpdate();
+                        }
+                    } else {
+                        System.out.println("No item found with the provided 'kode_barang'.");
                     }
-
-                    try (PreparedStatement deleteBarangStmt = con.prepareStatement(deleteBarangSql)) {
-                        deleteBarangStmt.setInt(1, kode_barang);
-
-                        int rowAffected = deleteBarangStmt.executeUpdate();
-                        System.out.println(String.format("Row affected in 'barang' table %d", rowAffected));
-                    }
-                } else {
-                    System.out.println("No item found with the provided 'kode_barang'.");
                 }
             }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         }
     }
 }
+
