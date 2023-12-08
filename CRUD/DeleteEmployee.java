@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import Connection.SQLConnection;
-
 public class DeleteEmployee {
     public static void deleteEmployeeByNIK(Connection conn, String nik) throws SQLException {
         // Delete from detail_pegawai
