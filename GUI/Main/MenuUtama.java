@@ -26,10 +26,10 @@ public class MenuUtama extends javax.swing.JFrame {
     /**
      * Creates new form MenuUtama
      */
-    public MenuUtama() {
-        initComponents();
+    public MenuUtama(String path) {
+        initComponents(path);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        execute();
+        execute(path);
     }
 
     /**
@@ -39,7 +39,7 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String path) {
 
         pn_navbar = new JPanel(); // Use a standard JPanel
         jLabel3 = new javax.swing.JLabel();
@@ -64,7 +64,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel3.setForeground(new Color(255, 255, 255));
         jLabel3.setText("UB MERCH DATABASES SYSTEM");
 
-        jLabel1.setIcon(new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\BRONE_UB-removebg-preview (1).png")); // NOI18N
+        jLabel1.setIcon(new ImageIcon(path + "GUI\\image_main\\BRONE_UB-removebg-preview (1).png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout pn_navbarLayout = new javax.swing.GroupLayout(pn_navbar);
@@ -145,11 +145,11 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPanel pn_utama;
     // End of variables declaration//GEN-END:variables
 
-    private void execute() {
-        ImageIcon iconDashboard = new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\house-chimney (1).png");
-        ImageIcon iconTransaksi = new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\coins (1).png");
-        ImageIcon iconBarang = new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\box-alt (1).png");
-        ImageIcon iconPegawai = new ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\user (1).png");
+    private void execute(String path) {
+        ImageIcon iconDashboard = new ImageIcon(path + "GUI\\image_main\\house-chimney (1).png");
+        ImageIcon iconTransaksi = new ImageIcon(path + "GUI\\image_main\\coins (1).png");
+        ImageIcon iconBarang = new ImageIcon(path + "GUI\\image_main\\box-alt (1).png");
+        ImageIcon iconPegawai = new ImageIcon(path + "GUI\\image_main\\user (1).png");
     
         MenuItem menuHome = new MenuItem(iconDashboard, false, null, "Halaman Utama", new ActionListener() {
             @Override
