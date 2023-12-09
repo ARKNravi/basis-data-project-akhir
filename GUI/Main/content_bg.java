@@ -13,8 +13,8 @@ public class content_bg extends javax.swing.JPanel {
     /**
      * Creates new form content_bg
      */
-    public content_bg(String os) {
-        initComponents(os);
+    public content_bg() {
+        initComponents();
     }
 
     /**
@@ -24,50 +24,141 @@ public class content_bg extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(String os) {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         gambar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jesper_transaksi = new javax.swing.JToggleButton();
+        jesper_kepegawaian = new javax.swing.JToggleButton();
+        jesper_barang = new javax.swing.JToggleButton();
 
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        logo.setIcon(new javax.swing.ImageIcon("GUI"+ os +"image_main"+ os +"logo (1).png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon("C:\\Penyimpanan Utama\\Downloads\\logo.png")); // NOI18N
 
-        gambar.setIcon(new javax.swing.ImageIcon("GUI"+ os +"image_main"+ os +"2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (2).png")); // NOI18N
+        gambar.setIcon(new javax.swing.ImageIcon("C:\\Penyimpanan Utama\\Downloads\\2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (1).png")); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Lato", 3, 24)); // NOI18N
+        jLabel1.setText("LAPORAN TERKAIT");
+
+        jesper_transaksi.setBackground(new java.awt.Color(13, 14, 69));
+        jesper_transaksi.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        jesper_transaksi.setForeground(new java.awt.Color(255, 255, 255));
+        jesper_transaksi.setText("TRANSAKSI");
+        jesper_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jesper_transaksiMousePressed(evt);
+            }
+        });
+        jesper_transaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jesper_transaksiActionPerformed(evt);
+            }
+        });
+
+        jesper_kepegawaian.setBackground(new java.awt.Color(13, 14, 69));
+        jesper_kepegawaian.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        jesper_kepegawaian.setForeground(new java.awt.Color(255, 255, 255));
+        jesper_kepegawaian.setText("KEPEGAWAIAN");
+        jesper_kepegawaian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jesper_kepegawaianMousePressed(evt);
+            }
+        });
+
+        jesper_barang.setBackground(new java.awt.Color(13, 14, 69));
+        jesper_barang.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        jesper_barang.setForeground(new java.awt.Color(255, 255, 255));
+        jesper_barang.setText("STOK BARANG");
+        jesper_barang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jesper_barangMousePressed(evt);
+            }
+        });
+        jesper_barang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jesper_barangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(777, 777, 777)
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(450, Short.MAX_VALUE)
-                .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 1092, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(245, 245, 245))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(558, 558, 558)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jesper_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(jesper_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)))
+                        .addGap(31, 31, 31)
+                        .addComponent(jesper_kepegawaian, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(416, 416, 416)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(307, 307, 307)
+                                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(761, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(171, 171, 171)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(92, Short.MAX_VALUE)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jesper_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jesper_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jesper_kepegawaian, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(104, 104, 104))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jesper_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jesper_transaksiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jesper_transaksiActionPerformed
+
+    private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jesper_barangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jesper_barangActionPerformed
+
+    private void jesper_barangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jesper_barangMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jesper_barangMousePressed
+
+    private void jesper_kepegawaianMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jesper_kepegawaianMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jesper_kepegawaianMousePressed
+
+    private void jesper_transaksiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jesper_transaksiMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jesper_transaksiMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel gambar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JToggleButton jesper_barang;
+    private javax.swing.JToggleButton jesper_kepegawaian;
+    private javax.swing.JToggleButton jesper_transaksi;
     private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
 }

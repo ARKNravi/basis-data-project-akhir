@@ -1,6 +1,5 @@
 package Main;
 
-import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import CRUD.CreateEmployee;
 import CRUD.DeleteEmployee;
 import CRUD.ReadEmployee;
+import Connection.SQLConnection;
 import Search.Search;
 
 /*
@@ -25,16 +25,11 @@ import Search.Search;
  */
 public class Form_Pegawai extends javax.swing.JPanel {
 
-    Connection conn;
-
-    public Form_Pegawai(Connection conn, String os) {
-        this.conn = conn;
-        initComponents();
-        populateTable();
-    }
-
-    private void populateTable() {
-        ResultSet resultSet = ReadEmployee.bacaSemuaPegawaiResultSet(conn);
+    /**
+     * Creates new form Form_Pegawai
+     */
+        private void populateTable() {
+        ResultSet resultSet = ReadEmployee.bacaSemuaPegawaiResultSet();
 
         DefaultTableModel model = new DefaultTableModel();
         tableDataTransaksi.setModel(model);
@@ -56,6 +51,11 @@ public class Form_Pegawai extends javax.swing.JPanel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Form_Pegawai(String os) {
+        initComponents();
+        populateTable();
     }
 
     /**
@@ -106,6 +106,24 @@ public class Form_Pegawai extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDataTransaksi = new javax.swing.JTable();
         pecatPegawai_button = new javax.swing.JButton();
+        desc_nik = new javax.swing.JButton();
+        asc_nik = new javax.swing.JButton();
+        desc_nama = new javax.swing.JButton();
+        asc_nama = new javax.swing.JButton();
+        desc_ttl = new javax.swing.JButton();
+        asc_ttl = new javax.swing.JButton();
+        desc_npwp = new javax.swing.JButton();
+        asc_npwp = new javax.swing.JButton();
+        desc_rekening = new javax.swing.JButton();
+        asc_rekening = new javax.swing.JButton();
+        desc_anak = new javax.swing.JButton();
+        asc_anak = new javax.swing.JButton();
+        desc_grade = new javax.swing.JButton();
+        asc_grade = new javax.swing.JButton();
+        desc_golongan = new javax.swing.JButton();
+        asc_golongan = new javax.swing.JButton();
+        desc_nip = new javax.swing.JButton();
+        asc_nip = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -160,11 +178,11 @@ public class Form_Pegawai extends javax.swing.JPanel {
         jLabel6.setText("Penddikan");
 
         status_comboBox.setBackground(new java.awt.Color(245, 245, 245));
-        status_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Menikah", "Menikah" }));
+        status_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAJANG", "MENIKAH" }));
         status_comboBox.setBorder(null);
 
         jLabel7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jLabel7.setText("Tempat Lahir");
+        jLabel7.setText("Tempat Tanggal Lahir");
 
         TanggalLahirField.setBackground(new java.awt.Color(245, 245, 245));
         TanggalLahirField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -209,10 +227,10 @@ public class Form_Pegawai extends javax.swing.JPanel {
         NIPField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel16.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jLabel16.setText("Tanggal Lahir (YYYY-MM-DD)");
+        jLabel16.setText("NIP/NRK");
 
         jLabel17.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
-        jLabel17.setText("Status Pegawai");
+        jLabel17.setText("Perjanjian");
 
         PerjanjianField.setBackground(new java.awt.Color(245, 245, 245));
         PerjanjianField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -223,17 +241,15 @@ public class Form_Pegawai extends javax.swing.JPanel {
         Pendidikan_comboBOX.setBorder(null);
 
         Grade_ComnoBox.setBackground(new java.awt.Color(245, 245, 245));
-        Grade_ComnoBox
-                .setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        Grade_ComnoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
         Grade_ComnoBox.setBorder(null);
 
         JenisKelamin_comboBox.setBackground(new java.awt.Color(245, 245, 245));
-        JenisKelamin_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "L", "P" }));
+        JenisKelamin_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAKI-LAKI", "PEREMPUAN" }));
         JenisKelamin_comboBox.setBorder(null);
 
         Golongan_ComboBox.setBackground(new java.awt.Color(245, 245, 245));
-        Golongan_ComboBox
-                .setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        Golongan_ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3","4","5","6","7" }));
         Golongan_ComboBox.setBorder(null);
 
         NIKField.setBackground(new java.awt.Color(245, 245, 245));
@@ -290,247 +306,307 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
+        desc_nik.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_nik.setBorder(null);
+        desc_nik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_nikActionPerformed(evt);
+            }
+        });
+
+        asc_nik.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nik.setBorder(null);
+        asc_nik.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                asc_nikMousePressed(evt);
+            }
+        });
+        asc_nik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_nikActionPerformed(evt);
+            }
+        });
+
+        desc_nama.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_nama.setBorder(null);
+        desc_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_namaActionPerformed(evt);
+            }
+        });
+
+        asc_nama.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nama.setBorder(null);
+        asc_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_namaActionPerformed(evt);
+            }
+        });
+
+        desc_ttl.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_ttl.setBorder(null);
+        desc_ttl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_ttlActionPerformed(evt);
+            }
+        });
+
+        asc_ttl.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_ttl.setBorder(null);
+        asc_ttl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_ttlActionPerformed(evt);
+            }
+        });
+
+        desc_npwp.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_npwp.setBorder(null);
+        desc_npwp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_npwpActionPerformed(evt);
+            }
+        });
+
+        asc_npwp.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_npwp.setBorder(null);
+        asc_npwp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_npwpActionPerformed(evt);
+            }
+        });
+
+        desc_rekening.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_rekening.setBorder(null);
+        desc_rekening.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_rekeningActionPerformed(evt);
+            }
+        });
+
+        asc_rekening.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_rekening.setBorder(null);
+        asc_rekening.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_rekeningActionPerformed(evt);
+            }
+        });
+
+        desc_anak.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_anak.setBorder(null);
+        desc_anak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_anakActionPerformed(evt);
+            }
+        });
+
+        asc_anak.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_anak.setBorder(null);
+        asc_anak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_anakActionPerformed(evt);
+            }
+        });
+
+        desc_grade.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_grade.setBorder(null);
+        desc_grade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_gradeActionPerformed(evt);
+            }
+        });
+
+        asc_grade.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_grade.setBorder(null);
+        asc_grade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_gradeActionPerformed(evt);
+            }
+        });
+
+        desc_golongan.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_golongan.setBorder(null);
+        desc_golongan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_golonganActionPerformed(evt);
+            }
+        });
+
+        asc_golongan.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_golongan.setBorder(null);
+        asc_golongan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_golonganActionPerformed(evt);
+            }
+        });
+
+        desc_nip.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\down-arrow.png")); // NOI18N
+        desc_nip.setBorder(null);
+        desc_nip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_nipActionPerformed(evt);
+            }
+        });
+
+        asc_nip.setIcon(new javax.swing.ImageIcon("C:\\Users\\Bagas\\OneDrive\\Documents\\NetBeansProjects\\UBMERCH\\src\\main\\java\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nip.setBorder(null);
+        asc_nip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_nipActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout transaksiBaruLayout = new javax.swing.GroupLayout(transaksiBaru);
         transaksiBaru.setLayout(transaksiBaruLayout);
         transaksiBaruLayout.setHorizontalGroup(
-                transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(transaksiBaruLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                .addGroup(transaksiBaruLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                                .addGroup(transaksiBaruLayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jLabel10)
-                                                                        .addComponent(jLabel11)
-                                                                        .addComponent(jLabel12))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE))
-                                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                                .addGroup(transaksiBaruLayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(status_comboBox,
-                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                0, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(JenisKelamin_comboBox,
-                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                0, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(Pendidikan_comboBOX,
-                                                                                javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                0, 286, Short.MAX_VALUE)
-                                                                        .addComponent(NoRekeningField,
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(JumlahAnakField,
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(NPWPField,
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(TanggalLahirField,
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(namaLenkapField))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                        277, Short.MAX_VALUE)))
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                .addGroup(transaksiBaruLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel3)
-                                                        .addComponent(jSeparator5,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 1239,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jScrollPane2,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 1325,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(transaksiBaruLayout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                        false)
-                                                                .addComponent(NIKField,
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        transaksiBaruLayout.createSequentialGroup()
-                                                                                .addComponent(tambahPegawai_Button,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        169,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                .addComponent(pecatPegawai_button,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        170,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(cariPegawai_Button,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        170,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                                .addGroup(transaksiBaruLayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jLabel8)
-                                                                        .addComponent(jLabel6)
-                                                                        .addComponent(jLabel5)
-                                                                        .addComponent(jLabel9)
-                                                                        .addComponent(jLabel7))
-                                                                .addGap(209, 209, 209)
-                                                                .addGroup(transaksiBaruLayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jLabel16)
-                                                                        .addComponent(jLabel17)
-                                                                        .addComponent(jLabel15)
-                                                                        .addComponent(jLabel13)
-                                                                        .addComponent(jLabel14)
-                                                                        .addGroup(transaksiBaruLayout
-                                                                                .createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                        false)
-                                                                                .addComponent(Golongan_ComboBox,
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                        0,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE)
-                                                                                .addComponent(Grade_ComnoBox,
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                        0,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE)
-                                                                                .addComponent(PerjanjianField,
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(NIPField,
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(AlamatField,
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        345,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                                .addContainerGap(29, Short.MAX_VALUE)))));
+            transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transaksiBaruLayout.createSequentialGroup()
+                        .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(status_comboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(JenisKelamin_comboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Pendidikan_comboBOX, javax.swing.GroupLayout.Alignment.LEADING, 0, 286, Short.MAX_VALUE)
+                                    .addComponent(NoRekeningField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JumlahAnakField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NPWPField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TanggalLahirField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(namaLenkapField))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(transaksiBaruLayout.createSequentialGroup()
+                        .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(NIKField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transaksiBaruLayout.createSequentialGroup()
+                                    .addComponent(tambahPegawai_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(pecatPegawai_button, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cariPegawai_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel7))
+                                .addGap(209, 209, 209)
+                                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel14)
+                                    .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(Golongan_ComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Grade_ComnoBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(PerjanjianField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(NIPField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(AlamatField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(29, Short.MAX_VALUE))))
+        );
         transaksiBaruLayout.setVerticalGroup(
-                transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel3)
+            transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NIKField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pecatPegawai_button, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cariPegawai_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tambahPegawai_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(transaksiBaruLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(namaLenkapField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Pendidikan_comboBOX, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TanggalLahirField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JenisKelamin_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NPWPField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(transaksiBaruLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(AlamatField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Grade_ComnoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(PerjanjianField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                                .addComponent(Golongan_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NIKField, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(NIPField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(transaksiBaruLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(pecatPegawai_button, javax.swing.GroupLayout.PREFERRED_SIZE, 44,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cariPegawai_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 44,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tambahPegawai_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 44,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(24, 24, 24)
-                                .addGroup(transaksiBaruLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(namaLenkapField, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel6)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Pendidikan_comboBOX,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 36,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(TanggalLahirField, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(JenisKelamin_comboBox,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 36,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(NPWPField, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                .addComponent(jLabel13)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(AlamatField, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel14)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Grade_ComnoBox, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(3, 3, 3)
-                                                .addComponent(jLabel15)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(transaksiBaruLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                                .addGap(142, 142, 142)
-                                                                .addComponent(PerjanjianField,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                                                .addComponent(Golongan_ComboBox,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jLabel16)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(NIPField,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(jLabel17)))))
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(status_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JumlahAnakField, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NoRekeningField, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(10, Short.MAX_VALUE)));
+                                .addComponent(jLabel17)))))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(status_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JumlahAnakField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NoRekeningField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout riwayatTransaksiLayout = new javax.swing.GroupLayout(riwayatTransaksi);
         riwayatTransaksi.setLayout(riwayatTransaksiLayout);
         riwayatTransaksiLayout.setHorizontalGroup(
-                riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(riwayatTransaksiLayout.createSequentialGroup()
-                                .addComponent(transaksiBaru, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+            riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(riwayatTransaksiLayout.createSequentialGroup()
+                .addComponent(transaksiBaru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
         riwayatTransaksiLayout.setVerticalGroup(
-                riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatTransaksiLayout
-                                .createSequentialGroup()
-                                .addComponent(transaksiBaru, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatTransaksiLayout.createSequentialGroup()
+                .addComponent(transaksiBaru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         mainPanel.add(riwayatTransaksi, "card2");
 
@@ -539,48 +615,51 @@ public class Form_Pegawai extends javax.swing.JPanel {
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pecatPegawai_buttonActionPerformed(java.awt.event.ActionEvent evt)
-            throws HeadlessException, SQLException {
-        // Get the NIK from the NIKField
-        String nikToDelete = NIKField.getText().trim(); // Trim to remove leading/trailing spaces
+private void pecatPegawai_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+    // Get the NIK from the NIKField
+    String nikToDelete = NIKField.getText().trim(); // Trim to remove leading/trailing spaces
 
-        // Check if NIK is empty or contains non-numeric characters
-        if (nikToDelete.isEmpty() || !nikToDelete.matches("\\d+")) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid NIK.");
-            return; // Exit the method if NIK is invalid
-        }
+    // Check if NIK is empty or contains non-numeric characters
+    if (nikToDelete.isEmpty() || !nikToDelete.matches("\\d+")) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid NIK.");
+        return; // Exit the method if NIK is invalid
+    }
 
-        // Check if the employee with the specified NIK exists before attempting
-        // deletion
-        if (!employeeExists(conn, nikToDelete)) {
+    try (Connection connection = SQLConnection.getConnection()) {
+        // Check if the employee with the specified NIK exists before attempting deletion
+        if (!employeeExists(connection, nikToDelete)) {
             JOptionPane.showMessageDialog(null, "Employee with NIK " + nikToDelete + " not found.");
             return; // Exit the method if employee with NIK is not found
         }
 
         // Call the deleteEmployeeByNIK method from the DeleteEmployee class
-        DeleteEmployee.deleteEmployeeByNIK(conn, nikToDelete);
+        DeleteEmployee.deleteEmployeeByNIK(connection, nikToDelete);
 
         // Provide user feedback
         JOptionPane.showMessageDialog(null, "Pegawai dipecat!");
 
         // Refresh the table with updated data
         populateTable();
-
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Failed to delete employee. Please check your inputs and try again.");
     }
+}
 
-    // Helper method to check if an employee with the specified NIK exists
-    private boolean employeeExists(Connection connection, String nik) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM data_pegawai WHERE nik = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setString(1, nik);
-            try (ResultSet resultSet = pstmt.executeQuery()) {
-                resultSet.next();
-                return resultSet.getInt(1) > 0;
-            }
+// Helper method to check if an employee with the specified NIK exists
+private boolean employeeExists(Connection connection, String nik) throws SQLException {
+    String sql = "SELECT COUNT(*) FROM data_pegawai WHERE nik = ?";
+    try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setString(1, nik);
+        try (ResultSet resultSet = pstmt.executeQuery()) {
+            resultSet.next();
+            return resultSet.getInt(1) > 0;
         }
     }
+}
 
-    private void NIKFieldActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_NIKFieldActionPerformed
+
+    private void NIKFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NIKFieldActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_NIKFieldActionPerformed
 
@@ -591,62 +670,67 @@ public class Form_Pegawai extends javax.swing.JPanel {
     private void cariPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // Get the NIK from the NIKField for searching
         String nikToSearch = NIKField.getText().trim();
-
+    
         // Check if NIK is empty or contains non-numeric characters
         if (nikToSearch.isEmpty() || !nikToSearch.matches("\\d+")) {
             JOptionPane.showMessageDialog(null, "Please enter a valid NIK for searching.");
             return; // Exit the method if NIK is invalid
         }
-
+    
         try {
             // Call the pegawai method from the Search class to search for employees
-            DefaultTableModel model = Search.pegawai(conn, nikToSearch);
-
+            DefaultTableModel model = Search.pegawai(nikToSearch);
+    
             // Update the table with search results
             tableDataTransaksi.setModel(model);
-
+    
             // Provide user feedback
             if (model.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(null, "No employee found with NIK: " + nikToSearch);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,
-                    "Failed to search for employee. Please check your inputs and try again.");
+            JOptionPane.showMessageDialog(null, "Failed to search for employee. Please check your inputs and try again.");
         }
     }
+    
 
-    private void tambahPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {// GEN-FIRST:event_tambahPegawai_ButtonActionPerformed
-        // Button buat tambah pegawai
-        // JOptionPane.showMessageDialog(null, "Pegawai baru berhasil ditambah!");
 
-        // Retrieve data from the form fields
-        String nik = NIKField.getText();
-        String nama = namaLenkapField.getText();
-        String pendidikan = Pendidikan_comboBOX.getSelectedItem().toString();
-        String tempat = TanggalLahirField.getText();
-        ; // You may need to add code to retrieve this from the form
-        String tanggal_lahir = NIPField.getText();
-        String jenis_kelamin = JenisKelamin_comboBox.getSelectedItem().toString();
-        String npwp = NPWPField.getText();
-        String status_pernikahan = status_comboBox.getSelectedItem().toString();
-        int jumlah_anak = Integer.parseInt(JumlahAnakField.getText());
-        String nomor_rekening = NoRekeningField.getText();
-        String alamat = AlamatField.getText();
-        int kelas = Integer.parseInt(Grade_ComnoBox.getSelectedItem().toString());
-        int golongan = Integer.parseInt(Golongan_ComboBox.getSelectedItem().toString());
-        String status_pegawai = PerjanjianField.getText(); // You may need to add code to retrieve this from the form
-        int total_cuti = 0; // You may need to add code to retrieve this from the form
-        int total_izin = 0; // You may need to add code to retrieve this from the form
+private void tambahPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahPegawai_ButtonActionPerformed
+    // Button buat tambah pegawai 
+    // JOptionPane.showMessageDialog(null, "Pegawai baru berhasil ditambah!");
 
-        // Call the method to insert data into the database
+    // Retrieve data from the form fields
+    String nik = NIKField.getText();
+    String nama = namaLenkapField.getText();
+    String pendidikan = Pendidikan_comboBOX.getSelectedItem().toString();
+    String tempat = TanggalLahirField.getText();;  // You may need to add code to retrieve this from the form
+    String tanggal_lahir = NIPField.getText();
+    String jenis_kelamin = JenisKelamin_comboBox.getSelectedItem().toString();
+    String npwp = NPWPField.getText();
+    String status_pernikahan = status_comboBox.getSelectedItem().toString();
+    int jumlah_anak = Integer.parseInt(JumlahAnakField.getText());
+    String nomor_rekening = NoRekeningField.getText();
+    String alamat = AlamatField.getText();
+    int kelas = Integer.parseInt(Grade_ComnoBox.getSelectedItem().toString());
+    int golongan = Integer.parseInt(Golongan_ComboBox.getSelectedItem().toString());
+    String status_pegawai = PerjanjianField.getText();  // You may need to add code to retrieve this from the form
+    int total_cuti = 0;  // You may need to add code to retrieve this from the form
+    int total_izin = 0;  // You may need to add code to retrieve this from the form
 
-        CreateEmployee.tambahPegawai(conn, nik, nama, pendidikan, tempat, tanggal_lahir, jenis_kelamin, npwp,
+    // Call the method to insert data into the database
+    try (Connection connection = SQLConnection.getConnection()) {
+        CreateEmployee.tambahPegawai(connection, nik, nama, pendidikan, tempat, tanggal_lahir, jenis_kelamin, npwp,
                 status_pernikahan, jumlah_anak, nomor_rekening, alamat, kelas, golongan, status_pegawai,
                 total_cuti, total_izin);
 
         // Refresh the table with updated data
         populateTable();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Failed to add employee. Please check your inputs and try again.");
+    }
+}//GEN-LAST:event_tambahPegawai_ButtonActionPerformed
 
     }// GEN-LAST:event_tambahPegawai_ButtonActionPerformed
 
@@ -663,7 +747,25 @@ public class Form_Pegawai extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> Pendidikan_comboBOX;
     private javax.swing.JTextField PerjanjianField;
     private javax.swing.JTextField TanggalLahirField;
+    private javax.swing.JButton asc_anak;
+    private javax.swing.JButton asc_golongan;
+    private javax.swing.JButton asc_grade;
+    private javax.swing.JButton asc_nama;
+    private javax.swing.JButton asc_nik;
+    private javax.swing.JButton asc_nip;
+    private javax.swing.JButton asc_npwp;
+    private javax.swing.JButton asc_rekening;
+    private javax.swing.JButton asc_ttl;
     private javax.swing.JButton cariPegawai_Button;
+    private javax.swing.JButton desc_anak;
+    private javax.swing.JButton desc_golongan;
+    private javax.swing.JButton desc_grade;
+    private javax.swing.JButton desc_nama;
+    private javax.swing.JButton desc_nik;
+    private javax.swing.JButton desc_nip;
+    private javax.swing.JButton desc_npwp;
+    private javax.swing.JButton desc_rekening;
+    private javax.swing.JButton desc_ttl;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
