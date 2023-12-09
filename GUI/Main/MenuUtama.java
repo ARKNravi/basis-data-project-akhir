@@ -60,7 +60,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pn_navbar.setBackground(new Color(128, 117, 255)); // Set background color
 
         jLabel3.setBackground(new Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Lato", 3, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans Condensed", 3, 18)); // NOI18N
         jLabel3.setForeground(new Color(255, 255, 255));
         jLabel3.setText("UB MERCH DATABASES SYSTEM");
 

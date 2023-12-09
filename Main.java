@@ -7,6 +7,7 @@ public class Main {
     static String os = "\\"; // mac os : /; Windows : \\;
 
     public static void main(String args[]) {
+        
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -29,7 +30,7 @@ public class Main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuUtama(os).setVisible(true);
+                new Login(os).setVisible(true);
             }
         });
     }

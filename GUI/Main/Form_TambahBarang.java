@@ -40,7 +40,7 @@ public class Form_TambahBarang extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tambahBarangi_Button.setBackground(new java.awt.Color(13, 14, 69));
-        tambahBarangi_Button.setFont(new java.awt.Font("Lato", 1, 14));
+        tambahBarangi_Button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14));
         tambahBarangi_Button.setForeground(new java.awt.Color(255, 255, 255));
         tambahBarangi_Button.setText("TAMBAH BARANG");
         tambahBarangi_Button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -54,10 +54,10 @@ public class Form_TambahBarang extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Lato", 0, 16));
+        jLabel2.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16));
         jLabel2.setText("Nama Barang");
 
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 16));
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16));
         jLabel3.setText("Harga Satuan");
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);

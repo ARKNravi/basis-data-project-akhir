@@ -105,6 +105,24 @@ public class Form_Pegawai extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDataTransaksi = new javax.swing.JTable();
         pecatPegawai_button = new javax.swing.JButton();
+        desc_nik = new javax.swing.JButton();
+        asc_nik = new javax.swing.JButton();
+        desc_nama = new javax.swing.JButton();
+        asc_nama = new javax.swing.JButton();
+        desc_ttl = new javax.swing.JButton();
+        asc_ttl = new javax.swing.JButton();
+        desc_npwp = new javax.swing.JButton();
+        asc_npwp = new javax.swing.JButton();
+        desc_rekening = new javax.swing.JButton();
+        asc_rekening = new javax.swing.JButton();
+        desc_anak = new javax.swing.JButton();
+        asc_anak = new javax.swing.JButton();
+        desc_grade = new javax.swing.JButton();
+        asc_grade = new javax.swing.JButton();
+        desc_golongan = new javax.swing.JButton();
+        asc_golongan = new javax.swing.JButton();
+        desc_nip = new javax.swing.JButton();
+        asc_nip = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -116,12 +134,12 @@ public class Form_Pegawai extends javax.swing.JPanel {
 
         transaksiBaru.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(13, 14, 69));
         jLabel3.setText("DATA PEGAWAI");
 
         tambahPegawai_Button.setBackground(new java.awt.Color(13, 14, 69));
-        tambahPegawai_Button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        tambahPegawai_Button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         tambahPegawai_Button.setForeground(new java.awt.Color(255, 255, 255));
         tambahPegawai_Button.setText("TAMBAH PEGAWAI");
         tambahPegawai_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +149,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
         });
 
         cariPegawai_Button.setBackground(new java.awt.Color(13, 14, 69));
-        cariPegawai_Button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        cariPegawai_Button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         cariPegawai_Button.setForeground(new java.awt.Color(255, 255, 255));
         cariPegawai_Button.setText("CARI PEGAWAI");
         cariPegawai_Button.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +158,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel5.setText("Nama Lengkap");
 
         namaLenkapField.setBackground(new java.awt.Color(245, 245, 245));
@@ -151,38 +169,38 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel6.setText("Penddikan");
 
         status_comboBox.setBackground(new java.awt.Color(245, 245, 245));
         status_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Menikah", "Menikah" }));
         status_comboBox.setBorder(null);
 
-        jLabel7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel7.setText("Tempat Lahir");
 
         TanggalLahirField.setBackground(new java.awt.Color(245, 245, 245));
         TanggalLahirField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel8.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel8.setText("Jenis Kelamin");
 
-        jLabel9.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel9.setText("NPWP");
 
         NPWPField.setBackground(new java.awt.Color(245, 245, 245));
         NPWPField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel10.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel10.setText("Status");
 
-        jLabel11.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel11.setText("Jumlah Anak");
 
         JumlahAnakField.setBackground(new java.awt.Color(245, 245, 245));
         JumlahAnakField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel12.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel12.setText("No Rekening");
 
         NoRekeningField.setBackground(new java.awt.Color(245, 245, 245));
@@ -191,22 +209,22 @@ public class Form_Pegawai extends javax.swing.JPanel {
         AlamatField.setBackground(new java.awt.Color(245, 245, 245));
         AlamatField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel13.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel13.setText("Alamat");
 
-        jLabel14.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel14.setText("Grade");
 
-        jLabel15.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel15.setText("Golongan");
 
         NIPField.setBackground(new java.awt.Color(245, 245, 245));
         NIPField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel16.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel16.setText("Tanggal Lahir (YYYY-MM-DD)");
 
-        jLabel17.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel17.setText("Status Pegawai");
 
         PerjanjianField.setBackground(new java.awt.Color(245, 245, 245));
@@ -266,7 +284,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tableDataTransaksi);
 
         pecatPegawai_button.setBackground(new java.awt.Color(13, 14, 69));
-        pecatPegawai_button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        pecatPegawai_button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         pecatPegawai_button.setForeground(new java.awt.Color(255, 255, 255));
         pecatPegawai_button.setText("PECAT PEGAWAI");
         pecatPegawai_button.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +293,156 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
+        desc_nik.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_nik.setBorder(null);
+        desc_nik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_nikActionPerformed(evt);
+            }
+        });
+
+        asc_nik.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nik.setBorder(null);
+        asc_nik.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                asc_nikMousePressed(evt);
+            }
+        });
+        asc_nik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_nikActionPerformed(evt);
+            }
+        });
+
+        desc_nama.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_nama.setBorder(null);
+        desc_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_namaActionPerformed(evt);
+            }
+        });
+
+        asc_nama.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nama.setBorder(null);
+        asc_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_namaActionPerformed(evt);
+            }
+        });
+
+        desc_ttl.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_ttl.setBorder(null);
+        desc_ttl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_ttlActionPerformed(evt);
+            }
+        });
+
+        asc_ttl.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_ttl.setBorder(null);
+        asc_ttl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_ttlActionPerformed(evt);
+            }
+        });
+
+        desc_npwp.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_npwp.setBorder(null);
+        desc_npwp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_npwpActionPerformed(evt);
+            }
+        });
+
+        asc_npwp.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_npwp.setBorder(null);
+        asc_npwp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_npwpActionPerformed(evt);
+            }
+        });
+
+        desc_rekening.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_rekening.setBorder(null);
+        desc_rekening.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_rekeningActionPerformed(evt);
+            }
+        });
+
+        asc_rekening.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_rekening.setBorder(null);
+        asc_rekening.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_rekeningActionPerformed(evt);
+            }
+        });
+
+        desc_anak.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_anak.setBorder(null);
+        desc_anak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_anakActionPerformed(evt);
+            }
+        });
+
+        asc_anak.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_anak.setBorder(null);
+        asc_anak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_anakActionPerformed(evt);
+            }
+        });
+
+        desc_grade.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_grade.setBorder(null);
+        desc_grade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_gradeActionPerformed(evt);
+            }
+        });
+
+        asc_grade.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_grade.setBorder(null);
+        asc_grade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_gradeActionPerformed(evt);
+            }
+        });
+
+        desc_golongan.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_golongan.setBorder(null);
+        desc_golongan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_golonganActionPerformed(evt);
+            }
+        });
+
+        asc_golongan.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_golongan.setBorder(null);
+        asc_golongan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_golonganActionPerformed(evt);
+            }
+        });
+
+        desc_nip.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_nip.setBorder(null);
+        desc_nip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_nipActionPerformed(evt);
+            }
+        });
+
+        asc_nip.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nip.setBorder(null);
+        asc_nip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_nipActionPerformed(evt);
+            }
+        });
+
+
         javax.swing.GroupLayout transaksiBaruLayout = new javax.swing.GroupLayout(transaksiBaru);
         transaksiBaru.setLayout(transaksiBaruLayout);
         transaksiBaruLayout.setHorizontalGroup(
@@ -282,31 +450,17 @@ public class Form_Pegawai extends javax.swing.JPanel {
             .addGroup(transaksiBaruLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(transaksiBaruLayout.createSequentialGroup()
                         .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(transaksiBaruLayout.createSequentialGroup()
-                                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(status_comboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(JenisKelamin_comboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Pendidikan_comboBOX, javax.swing.GroupLayout.Alignment.LEADING, 0, 286, Short.MAX_VALUE)
-                                    .addComponent(NoRekeningField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JumlahAnakField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NPWPField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TanggalLahirField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(namaLenkapField))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addGap(0, 1319, Short.MAX_VALUE))
                     .addGroup(transaksiBaruLayout.createSequentialGroup()
                         .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 1239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1325, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(NIKField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transaksiBaruLayout.createSequentialGroup()
@@ -335,7 +489,56 @@ public class Form_Pegawai extends javax.swing.JPanel {
                                         .addComponent(PerjanjianField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(NIPField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(AlamatField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(29, Short.MAX_VALUE))))
+                        .addContainerGap(169, Short.MAX_VALUE))
+                    .addGroup(transaksiBaruLayout.createSequentialGroup()
+                        .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(asc_nik)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(desc_nik)
+                                .addGap(53, 53, 53)
+                                .addComponent(asc_nama)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(desc_nama)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(status_comboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JenisKelamin_comboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Pendidikan_comboBOX, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NoRekeningField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JumlahAnakField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NPWPField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TanggalLahirField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(namaLenkapField))
+                        .addGap(8, 8, 8)
+                        .addComponent(asc_ttl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(desc_ttl)
+                        .addGap(158, 158, 158)
+                        .addComponent(asc_npwp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(desc_npwp)
+                        .addGap(50, 50, 50)
+                        .addComponent(asc_rekening)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(desc_rekening)
+                        .addGap(44, 44, 44)
+                        .addComponent(asc_anak)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(desc_anak)
+                        .addGap(156, 156, 156)
+                        .addComponent(asc_grade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(desc_grade)
+                        .addGap(48, 48, 48)
+                        .addComponent(asc_golongan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(desc_golongan)
+                        .addGap(47, 47, 47)
+                        .addComponent(asc_nip)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(desc_nip)
+                        .addGap(137, 137, 137))))
         );
         transaksiBaruLayout.setVerticalGroup(
             transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,10 +610,48 @@ public class Form_Pegawai extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NoRekeningField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transaksiBaruLayout.createSequentialGroup()
+                        .addComponent(NoRekeningField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(desc_nik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(asc_nik)))
+                            .addGroup(transaksiBaruLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(desc_ttl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(asc_ttl))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(desc_npwp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(asc_npwp))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(desc_rekening, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(asc_rekening))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(desc_anak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(asc_anak))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(desc_grade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(asc_grade))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(desc_golongan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(asc_golongan))
+                                    .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(desc_nip, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(asc_nip)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(transaksiBaruLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(transaksiBaruLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(desc_nama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(asc_nama))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout riwayatTransaksiLayout = new javax.swing.GroupLayout(riwayatTransaksi);
@@ -552,6 +793,82 @@ private void tambahPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt)
     }
 }//GEN-LAST:event_tambahPegawai_ButtonActionPerformed
 
+private void desc_nikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_nikActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_nikActionPerformed
+
+private void asc_nikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_nikActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_nikActionPerformed
+
+private void desc_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_namaActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_namaActionPerformed
+
+private void asc_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_namaActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_namaActionPerformed
+
+private void desc_ttlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_ttlActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_ttlActionPerformed
+
+private void asc_ttlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_ttlActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_ttlActionPerformed
+
+private void desc_npwpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_npwpActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_npwpActionPerformed
+
+private void asc_npwpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_npwpActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_npwpActionPerformed
+
+private void desc_rekeningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_rekeningActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_rekeningActionPerformed
+
+private void asc_rekeningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_rekeningActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_rekeningActionPerformed
+
+private void desc_anakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_anakActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_anakActionPerformed
+
+private void asc_anakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_anakActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_anakActionPerformed
+
+private void desc_gradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_gradeActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_gradeActionPerformed
+
+private void asc_gradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_gradeActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_gradeActionPerformed
+
+private void desc_golonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_golonganActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_golonganActionPerformed
+
+private void asc_golonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_golonganActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_golonganActionPerformed
+
+private void desc_nipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desc_nipActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_desc_nipActionPerformed
+
+private void asc_nipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asc_nipActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_nipActionPerformed
+
+private void asc_nikMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asc_nikMousePressed
+    // TODO add your handling code here:
+}//GEN-LAST:event_asc_nikMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AlamatField;
@@ -566,7 +883,25 @@ private void tambahPegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JComboBox<String> Pendidikan_comboBOX;
     private javax.swing.JTextField PerjanjianField;
     private javax.swing.JTextField TanggalLahirField;
+    private javax.swing.JButton asc_anak;
+    private javax.swing.JButton asc_golongan;
+    private javax.swing.JButton asc_grade;
+    private javax.swing.JButton asc_nama;
+    private javax.swing.JButton asc_nik;
+    private javax.swing.JButton asc_nip;
+    private javax.swing.JButton asc_npwp;
+    private javax.swing.JButton asc_rekening;
+    private javax.swing.JButton asc_ttl;
     private javax.swing.JButton cariPegawai_Button;
+    private javax.swing.JButton desc_anak;
+    private javax.swing.JButton desc_golongan;
+    private javax.swing.JButton desc_grade;
+    private javax.swing.JButton desc_nama;
+    private javax.swing.JButton desc_nik;
+    private javax.swing.JButton desc_nip;
+    private javax.swing.JButton desc_npwp;
+    private javax.swing.JButton desc_rekening;
+    private javax.swing.JButton desc_ttl;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

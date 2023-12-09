@@ -6,6 +6,7 @@ package Main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -19,6 +20,8 @@ import CRUD.DeleteBarang;
 import CRUD.ReadBarang;
 import CRUD.UpdateBarang;
 import Search.Search;
+import Search.Sort;
+import Connection.SQLConnection;
 
 /**
  *
@@ -54,7 +57,7 @@ public class Form_Barang extends javax.swing.JPanel {
         initComponents( os);
         
         
-        tableDataBarang.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 12));
+        tableDataBarang.getTableHeader().setFont(new Font("DejaVu Sans Condensed", Font.PLAIN, 12));
         tableDataBarang.getTableHeader().setOpaque(false);
         tableDataBarang.getTableHeader().setForeground(new Color(0,0,0));
         tableDataBarang.setRowHeight(25);  
@@ -98,6 +101,16 @@ public class Form_Barang extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         Gudang_comboBox = new javax.swing.JComboBox<>();
+        asc_ukuran = new javax.swing.JButton();
+        desc_ukuran = new javax.swing.JButton();
+        asc_namaBarang = new javax.swing.JButton();
+        desc_namaBarang = new javax.swing.JButton();
+        asc_kodebarang = new javax.swing.JButton();
+        desc_Kodebarang = new javax.swing.JButton();
+        asc_hargaBarang = new javax.swing.JButton();
+        desc_hargaBarang = new javax.swing.JButton();
+        asc_stokBarang = new javax.swing.JButton();
+        desc_stokBarang = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -105,7 +118,7 @@ public class Form_Barang extends javax.swing.JPanel {
 
         dataBarang.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(13, 14, 69));
         jLabel1.setText("DATA BARANG");
 
@@ -138,7 +151,7 @@ public class Form_Barang extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tableDataBarang);
 
         tambahBarang_button.setBackground(new java.awt.Color(13, 14, 69));
-        tambahBarang_button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        tambahBarang_button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         tambahBarang_button.setForeground(new java.awt.Color(255, 255, 255));
         tambahBarang_button.setText("UPDATE STOK");
         tambahBarang_button.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +179,7 @@ public class Form_Barang extends javax.swing.JPanel {
         });
 
         tambahBarang_button1.setBackground(new java.awt.Color(13, 14, 69));
-        tambahBarang_button1.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        tambahBarang_button1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         tambahBarang_button1.setForeground(new java.awt.Color(255, 255, 255));
         tambahBarang_button1.setText("HAPUS");
         tambahBarang_button1.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +189,7 @@ public class Form_Barang extends javax.swing.JPanel {
         });
 
         tambahBarang_button2.setBackground(new java.awt.Color(13, 14, 69));
-        tambahBarang_button2.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        tambahBarang_button2.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         tambahBarang_button2.setForeground(new java.awt.Color(255, 255, 255));
         tambahBarang_button2.setText("TAMBAH BARANG");
         tambahBarang_button2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -187,6 +200,110 @@ public class Form_Barang extends javax.swing.JPanel {
         tambahBarang_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tambahBarang_button2ActionPerformed(evt);
+            }
+        });
+
+        asc_namaBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_namaBarang.setBorder(null);
+        asc_namaBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                asc_namaBarangMousePressed(evt);
+            }
+        });
+        asc_namaBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_namaBarangActionPerformed(evt);
+            }
+        });
+
+        desc_namaBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_namaBarang.setBorder(null);
+        desc_namaBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                desc_namaBarangMousePressed(evt);
+            }
+        });
+        desc_namaBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_namaBarangActionPerformed(evt);
+            }
+        });
+
+        asc_kodebarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_kodebarang.setBorder(null);
+        asc_kodebarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                asc_kodebarangMousePressed(evt);
+            }
+        });
+        asc_kodebarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_kodebarangActionPerformed(evt);
+            }
+        });
+
+        desc_Kodebarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_Kodebarang.setBorder(null);
+        desc_Kodebarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                desc_KodebarangMousePressed(evt);
+            }
+        });
+        desc_Kodebarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_KodebarangActionPerformed(evt);
+            }
+        });
+
+        asc_hargaBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_hargaBarang.setBorder(null);
+        asc_hargaBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                asc_hargaBarangMousePressed(evt);
+            }
+        });
+        asc_hargaBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_hargaBarangActionPerformed(evt);
+            }
+        });
+
+        desc_hargaBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_hargaBarang.setBorder(null);
+        desc_hargaBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                desc_hargaBarangMousePressed(evt);
+            }
+        });
+        desc_hargaBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_hargaBarangActionPerformed(evt);
+            }
+        });
+
+        asc_stokBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_stokBarang.setBorder(null);
+        asc_stokBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                asc_stokBarangMousePressed(evt);
+            }
+        });
+        asc_stokBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asc_stokBarangActionPerformed(evt);
+            }
+        });
+
+        desc_stokBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_stokBarang.setBorder(null);
+        desc_stokBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                desc_stokBarangMousePressed(evt);
+            }
+        });
+        desc_stokBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desc_stokBarangActionPerformed(evt);
             }
         });
 
@@ -218,6 +335,28 @@ public class Form_Barang extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(button_search_barang)))
                 .addGap(36, 36, 36))
+            .addGroup(dataBarangLayout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(asc_kodebarang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(desc_Kodebarang)
+                .addGap(238, 238, 238)
+                .addComponent(asc_namaBarang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(desc_namaBarang)
+                .addGap(240, 240, 240)
+                .addComponent(asc_ukuran)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(desc_ukuran)
+                .addGap(234, 234, 234)
+                .addComponent(asc_hargaBarang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(desc_hargaBarang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(asc_stokBarang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(desc_stokBarang)
+                .addGap(159, 159, 159))
         );
         dataBarangLayout.setVerticalGroup(
             dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +378,26 @@ public class Form_Barang extends javax.swing.JPanel {
                         .addComponent(tambahBarang_button1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tambahBarang_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dataBarangLayout.createSequentialGroup()
+                        .addGroup(dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(desc_ukuran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(asc_ukuran))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(desc_Kodebarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(asc_kodebarang))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(desc_hargaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(asc_hargaBarang))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(desc_stokBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(asc_stokBarang)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(desc_namaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(asc_namaBarang)))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
 
@@ -247,12 +405,12 @@ public class Form_Barang extends javax.swing.JPanel {
 
         TambahBarang.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(13, 14, 69));
         jLabel2.setText("DATA BARANG");
 
         batal_button_simpan.setBackground(new java.awt.Color(13, 14, 69));
-        batal_button_simpan.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        batal_button_simpan.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         batal_button_simpan.setForeground(new java.awt.Color(255, 255, 255));
         batal_button_simpan.setText("BATAL");
         batal_button_simpan.addActionListener(new java.awt.event.ActionListener() {
@@ -261,22 +419,22 @@ public class Form_Barang extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel3.setText("Kode Barang");
 
         inputKodeBarang.setBackground(new java.awt.Color(245, 245, 245));
         inputKodeBarang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel4.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel4.setText("Nama Barang");
 
         inputNamaBarang.setBackground(new java.awt.Color(245, 245, 245));
         inputNamaBarang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel5.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel5.setText("Ukuran");
 
-        jLabel6.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel6.setText("Jumlah Barang");
 
         inputJumlahBarang.setBackground(new java.awt.Color(245, 245, 245));
@@ -287,7 +445,7 @@ public class Form_Barang extends javax.swing.JPanel {
         ukuran_comboBox.setBorder(null);
 
         simpan_button1.setBackground(new java.awt.Color(13, 14, 69));
-        simpan_button1.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        simpan_button1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         simpan_button1.setForeground(new java.awt.Color(255, 255, 255));
         simpan_button1.setText("UPDATE");
         simpan_button1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -301,11 +459,11 @@ public class Form_Barang extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "KODE BARANG", "KOKIN15 T-SHIRT BRAWIJAYA UNIVERSITY WHITE", "KOKIN16 T-SHIRT BRAWIJAYA UNIVERSITY 1963 GRAY", "KOKIN18 T-SHIRT MESIN UB WHITE", "KOKIN17 T-SHIRT MESIN UB BLACK", "KOKIN28 T-SHIRT BRAWIJAYA UNIVERSITY NAVY", "KOHIN11 HOODIE UNIVERSITAS BRAWAIJAYA BLACK", "KOBOIN22 BASEBALL SHIRT UB WHITE", "KOKIN35 T-SHIRT BRAWIJAYA ARMY" }));
         jComboBox1.setBorder(null);
 
-        jLabel7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
         jLabel7.setText("Gudang");
 
         Gudang_comboBox.setBackground(new java.awt.Color(245, 245, 245));
@@ -544,7 +702,128 @@ private void tambahBarang_button1ActionPerformed(java.awt.event.ActionEvent evt)
     }//GEN-LAST:event_tambahBarang_button2MousePressed
 
 
+
+private void asc_namaBarangActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        Connection conn = SQLConnection.getConnection();
+        DefaultTableModel model = Sort.barangAsc(conn, "nama_barang");
+        tableDataBarang.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+private void asc_kodebarangActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        Connection conn = SQLConnection.getConnection();
+        DefaultTableModel model = Sort.barangAsc(conn, "kode_barang");
+        tableDataBarang.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+private void asc_hargaBarangActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        Connection conn = SQLConnection.getConnection();
+        DefaultTableModel model = Sort.barangAsc(conn, "harga");
+        tableDataBarang.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+private void asc_stokBarangActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        Connection conn = SQLConnection.getConnection();
+        DefaultTableModel model = Sort.barangAsc(conn,"total_stok");
+        tableDataBarang.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+private void desc_namaBarangActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        Connection conn = SQLConnection.getConnection();
+        DefaultTableModel model = Sort.barangDesc(conn,"nama_barang");
+        tableDataBarang.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+private void desc_KodebarangActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        Connection conn = SQLConnection.getConnection();
+        DefaultTableModel model = Sort.barangDesc(conn,"kode_barang");
+        tableDataBarang.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+private void desc_hargaBarangActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        Connection conn = SQLConnection.getConnection();
+        DefaultTableModel model = Sort.barangDesc(conn,"harga");
+        tableDataBarang.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+private void desc_stokBarangActionPerformed(java.awt.event.ActionEvent evt) {
+    try {
+        Connection conn = SQLConnection.getConnection();
+        DefaultTableModel model = Sort.barangDesc(conn,"total_stok");
+        tableDataBarang.setModel(model);
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+
+    private void asc_kodebarangMousePressed(java.awt.event.MouseEvent evt) {
+    }
+
+    private void desc_KodebarangMousePressed(java.awt.event.MouseEvent evt) {
+    }
+    private void asc_namaBarangMousePressed(java.awt.event.MouseEvent evt) {
+    }
+    private void desc_namaBarangMousePressed(java.awt.event.MouseEvent evt) {
+    }
+
+    private void asc_ukuranMousePressed(java.awt.event.MouseEvent evt) {
+    }
+
+    private void desc_ukuranMousePressed(java.awt.event.MouseEvent evt) {
+    }
+
+    private void asc_hargaBarangMousePressed(java.awt.event.MouseEvent evt) {
+    }
+
+    private void desc_hargaBarangMousePressed(java.awt.event.MouseEvent evt) {
+    }
+
+    private void asc_stokBarangMousePressed(java.awt.event.MouseEvent evt) {
+    }
+
+    private void desc_stokBarangMousePressed(java.awt.event.MouseEvent evt) {
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton asc_hargaBarang;
+    private javax.swing.JButton asc_kodebarang;
+    private javax.swing.JButton asc_namaBarang;
+    private javax.swing.JButton asc_stokBarang;
+    private javax.swing.JButton asc_ukuran;
+    private javax.swing.JButton desc_Kodebarang;
+    private javax.swing.JButton desc_hargaBarang;
+    private javax.swing.JButton desc_namaBarang;
+    private javax.swing.JButton desc_stokBarang;
+    private javax.swing.JButton desc_ukuran;
     private javax.swing.JComboBox<String> Gudang_comboBox;
     private javax.swing.JPanel TambahBarang;
     private javax.swing.JButton batal_button_simpan;

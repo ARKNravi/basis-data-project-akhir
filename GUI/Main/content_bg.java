@@ -4,6 +4,20 @@
  */
 package Main;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+
+import Connection.SQLConnection;
+import net.sf.jasperreports.engine.DefaultJasperReportsContext;
+import net.sf.jasperreports.engine.JRPropertiesUtil;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.fonts.*;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author Bagas
@@ -25,7 +39,7 @@ public class content_bg extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents(String os) {
-
+        
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         gambar = new javax.swing.JLabel();
@@ -42,11 +56,11 @@ public class content_bg extends javax.swing.JPanel {
 
         gambar.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (1).png")); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Lato", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans Condensed", 3, 24)); // NOI18N
         jLabel1.setText("LAPORAN TERKAIT");
 
         jesper_transaksi.setBackground(new java.awt.Color(13, 14, 69));
-        jesper_transaksi.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        jesper_transaksi.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         jesper_transaksi.setForeground(new java.awt.Color(255, 255, 255));
         jesper_transaksi.setText("TRANSAKSI");
         jesper_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -61,7 +75,7 @@ public class content_bg extends javax.swing.JPanel {
         });
 
         jesper_kepegawaian.setBackground(new java.awt.Color(13, 14, 69));
-        jesper_kepegawaian.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        jesper_kepegawaian.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         jesper_kepegawaian.setForeground(new java.awt.Color(255, 255, 255));
         jesper_kepegawaian.setText("KEPEGAWAIAN");
         jesper_kepegawaian.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -69,9 +83,14 @@ public class content_bg extends javax.swing.JPanel {
                 jesper_kepegawaianMousePressed(evt);
             }
         });
+        jesper_kepegawaian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jesper_kepegawaianActionPerformed(evt);
+            }
+        });
 
         jesper_barang.setBackground(new java.awt.Color(13, 14, 69));
-        jesper_barang.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+        jesper_barang.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
         jesper_barang.setForeground(new java.awt.Color(255, 255, 255));
         jesper_barang.setText("STOK BARANG");
         jesper_barang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,12 +151,53 @@ public class content_bg extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jesper_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jesper_transaksiActionPerformed
-        // TODO add your handling code here:
+            try {
+        JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance())
+            .setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
+        // Get database connection
+        Connection conn = SQLConnection.getConnection();
+
+        // Load .jasper file
+        String reportSource = "C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\LaporanPenjualan.jasper";
+        InputStream is = new FileInputStream(new File(reportSource));
+
+        // Set parameters if any
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        // Fill the report
+        JasperPrint print = JasperFillManager.fillReport(is, params, conn);
+
+        // View the report
+        JasperViewer.viewReport(print, false);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_jesper_transaksiActionPerformed
 
-    private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jesper_barangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jesper_barangActionPerformed
+private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt) {
+
+    try {
+        JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance())
+            .setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
+        // Get database connection
+        Connection conn = SQLConnection.getConnection();
+
+        // Load .jasper file
+        String reportSource = "C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\laporanBarang.jasper";
+        InputStream is = new FileInputStream(new File(reportSource));
+
+        // Set parameters if any
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        // Fill the report
+        JasperPrint print = JasperFillManager.fillReport(is, params, conn);
+
+        // View the report
+        JasperViewer.viewReport(print, false);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
     private void jesper_barangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jesper_barangMousePressed
         // TODO add your handling code here:
@@ -150,6 +210,31 @@ public class content_bg extends javax.swing.JPanel {
     private void jesper_transaksiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jesper_transaksiMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jesper_transaksiMousePressed
+
+    private void jesper_kepegawaianActionPerformed(java.awt.event.ActionEvent evt) {
+
+    try {
+        JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance())
+            .setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
+        // Get database connection
+        Connection conn = SQLConnection.getConnection();
+
+        // Load .jasper file
+        String reportSource = "C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\dataKepegawaian.jasper";
+        InputStream is = new FileInputStream(new File(reportSource));
+
+        // Set parameters if any
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        // Fill the report
+        JasperPrint print = JasperFillManager.fillReport(is, params, conn);
+
+        // View the report
+        JasperViewer.viewReport(print, false);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

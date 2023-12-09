@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -155,8 +156,7 @@ public class Login extends javax.swing.JFrame {
         String password = txt_password.getText();
         
         try{
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost//SQLEXPRESS:1433;databaseName=project_basdat;encrypt=true;trustServerCertificate=true", "admin", "123");
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://MSI\\SQLEXPRESS:1433;databaseName=project_basdat;user=admin;password=apjy2k18;encrypt=true;trustServerCertificate=true");
             String sqlquery = "SELECT * FROM userlog WHERE username = '"+username+"' AND userpassword = '"+password+"'";
             PreparedStatement pst = con.prepareStatement(sqlquery);
             ResultSet rs = pst.executeQuery();
@@ -167,8 +167,8 @@ public class Login extends javax.swing.JFrame {
                 new MenuUtama(os).show();
              
                 }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        }catch(SQLException e){
+            e.printStackTrace();
         }
         
         

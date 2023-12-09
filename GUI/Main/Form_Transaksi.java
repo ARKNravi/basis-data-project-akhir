@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import CRUD.Transaksi;
 import Connection.SQLConnection;
     import Search.Search;
+    import Search.Sort;
 
     public class Form_Transaksi extends javax.swing.JPanel {
 
@@ -30,7 +31,7 @@ import Connection.SQLConnection;
         public Form_Transaksi( String os) {
             initComponents(os);
             
-            tableDataTransaksi.getTableHeader().setFont(new Font("Lato", Font.PLAIN, 12));
+            tableDataTransaksi.getTableHeader().setFont(new Font("DejaVu Sans Condensed", Font.PLAIN, 12));
             tableDataTransaksi.getTableHeader().setOpaque(false);
             tableDataTransaksi.getTableHeader().setForeground(new Color(0,0,0));
             tableDataTransaksi.setRowHeight(25);  
@@ -53,6 +54,7 @@ import Connection.SQLConnection;
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents( String os) {
 
+
             mainPanel = new javax.swing.JPanel();
             riwayatTransaksi = new javax.swing.JPanel();
             jLabel2 = new javax.swing.JLabel();
@@ -63,6 +65,20 @@ import Connection.SQLConnection;
             button_search = new javax.swing.JLabel();
             jSeparator4 = new javax.swing.JSeparator();
             txt_NoNota = new javax.swing.JTextField();
+            asc_nota = new javax.swing.JButton();
+            desc_Kodebarang = new javax.swing.JButton();
+            desc_KodeBarang = new javax.swing.JButton();
+            asc_kodebarang1 = new javax.swing.JButton();
+            desc_ukuran = new javax.swing.JButton();
+            asc_ukuran = new javax.swing.JButton();
+            desc_jumlah = new javax.swing.JButton();
+            asc_jumlah = new javax.swing.JButton();
+            desc_totalBarang = new javax.swing.JButton();
+            asc_totalHarga = new javax.swing.JButton();
+            desc_TanggalTransaksi = new javax.swing.JButton();
+            asc_tanggalTransaksi = new javax.swing.JButton();
+            asc_MetodePembelian = new javax.swing.JButton();
+            desc_MetodePembelian = new javax.swing.JButton();
             transaksiBaru = new javax.swing.JPanel();
             jLabel3 = new javax.swing.JLabel();
             jSeparator5 = new javax.swing.JSeparator();
@@ -82,11 +98,12 @@ import Connection.SQLConnection;
             jTable1 = new javax.swing.JTable();
             HitungTotal_button = new javax.swing.JButton();
             batal_button = new javax.swing.JButton();
-            jLabel8 = new javax.swing.JLabel();
             batal_button1 = new javax.swing.JButton();
             TOTALHARGA = new javax.swing.JTextField();
             hapusBarangNota_button2 = new javax.swing.JButton();
             jLabel1 = new javax.swing.JLabel();
+            jLabel8 = new javax.swing.JLabel();
+            TOTALHARGA1 = new javax.swing.JTextField();
 
             setLayout(new java.awt.CardLayout());
 
@@ -94,7 +111,7 @@ import Connection.SQLConnection;
 
             riwayatTransaksi.setBackground(new java.awt.Color(255, 255, 255));
 
-            jLabel2.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+            jLabel2.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 36)); // NOI18N
             jLabel2.setForeground(new java.awt.Color(13, 14, 69));
             jLabel2.setText("RIWAYAT TRANSAKSI");
 
@@ -125,7 +142,7 @@ import Connection.SQLConnection;
             jScrollPane2.setViewportView(tableDataTransaksi);
 
             TransaksiBaru_button.setBackground(new java.awt.Color(13, 14, 69));
-            TransaksiBaru_button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+            TransaksiBaru_button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
             TransaksiBaru_button.setForeground(new java.awt.Color(255, 255, 255));
             TransaksiBaru_button.setText("TRANSAKSI BARU");
             TransaksiBaru_button.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +170,183 @@ import Connection.SQLConnection;
                 }
             });
 
+            asc_nota.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_nota.setBorder(null);
+            asc_nota.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    asc_notaMousePressed(evt);
+                }
+            });
+            asc_nota.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    asc_notaActionPerformed(evt);
+                }
+            });
+    
+            desc_Kodebarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_Kodebarang.setBorder(null);
+            desc_Kodebarang.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    desc_KodebarangActionPerformed(evt);
+                }
+            });
+    
+            desc_KodeBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_KodeBarang.setBorder(null);
+            desc_KodeBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    desc_KodeBarangMousePressed(evt);
+                }
+            });
+            desc_KodeBarang.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    desc_KodeBarangActionPerformed(evt);
+                }
+            });
+    
+            asc_kodebarang1.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_kodebarang1.setBorder(null);
+            asc_kodebarang1.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    asc_kodebarang1MousePressed(evt);
+                }
+            });
+            asc_kodebarang1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    asc_kodebarang1ActionPerformed(evt);
+                }
+            });
+    
+            desc_ukuran.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_ukuran.setBorder(null);
+            desc_ukuran.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    desc_ukuranMousePressed(evt);
+                }
+            });
+            desc_ukuran.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    desc_ukuranActionPerformed(evt);
+                }
+            });
+    
+            asc_ukuran.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_ukuran.setBorder(null);
+            asc_ukuran.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    asc_ukuranMousePressed(evt);
+                }
+            });
+            asc_ukuran.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    asc_ukuranActionPerformed(evt);
+                }
+            });
+    
+            desc_jumlah.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_jumlah.setBorder(null);
+            desc_jumlah.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    desc_jumlahMousePressed(evt);
+                }
+            });
+            desc_jumlah.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    desc_jumlahActionPerformed(evt);
+                }
+            });
+    
+            asc_jumlah.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_jumlah.setBorder(null);
+            asc_jumlah.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    asc_jumlahMousePressed(evt);
+                }
+            });
+            asc_jumlah.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    asc_jumlahActionPerformed(evt);
+                }
+            });
+    
+            desc_totalBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_totalBarang.setBorder(null);
+            desc_totalBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    desc_totalBarangMousePressed(evt);
+                }
+            });
+            desc_totalBarang.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    desc_totalBarangActionPerformed(evt);
+                }
+            });
+    
+            asc_totalHarga.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_totalHarga.setBorder(null);
+            asc_totalHarga.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    asc_totalHargaMousePressed(evt);
+                }
+            });
+            asc_totalHarga.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    asc_totalHargaActionPerformed(evt);
+                }
+            });
+    
+            desc_TanggalTransaksi.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_TanggalTransaksi.setBorder(null);
+            desc_TanggalTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    desc_TanggalTransaksiMousePressed(evt);
+                }
+            });
+            desc_TanggalTransaksi.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    desc_TanggalTransaksiActionPerformed(evt);
+                }
+            });
+    
+            asc_tanggalTransaksi.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_tanggalTransaksi.setBorder(null);
+            asc_tanggalTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    asc_tanggalTransaksiMousePressed(evt);
+                }
+            });
+            asc_tanggalTransaksi.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    asc_tanggalTransaksiActionPerformed(evt);
+                }
+            });
+    
+            asc_MetodePembelian.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_MetodePembelian.setBorder(null);
+            asc_MetodePembelian.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    asc_MetodePembelianMousePressed(evt);
+                }
+            });
+            asc_MetodePembelian.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    asc_MetodePembelianActionPerformed(evt);
+                }
+            });
+    
+            desc_MetodePembelian.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_MetodePembelian.setBorder(null);
+            desc_MetodePembelian.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    desc_MetodePembelianMousePressed(evt);
+                }
+            });
+            desc_MetodePembelian.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    desc_MetodePembelianActionPerformed(evt);
+                }
+            });
+    
             javax.swing.GroupLayout riwayatTransaksiLayout = new javax.swing.GroupLayout(riwayatTransaksi);
             riwayatTransaksi.setLayout(riwayatTransaksiLayout);
             riwayatTransaksiLayout.setHorizontalGroup(
@@ -170,10 +364,43 @@ import Connection.SQLConnection;
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane2)
                                 .addGroup(riwayatTransaksiLayout.createSequentialGroup()
-                                    .addGap(0, 1266, Short.MAX_VALUE)
                                     .addGroup(riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txt_NoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(riwayatTransaksiLayout.createSequentialGroup()
+                                            .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(txt_NoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(riwayatTransaksiLayout.createSequentialGroup()
+                                            .addGap(84, 84, 84)
+                                            .addComponent(asc_nota)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(desc_Kodebarang)
+                                            .addGap(173, 173, 173)
+                                            .addComponent(asc_kodebarang1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(desc_KodeBarang)
+                                            .addGap(164, 164, 164)
+                                            .addComponent(asc_ukuran)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(desc_ukuran)
+                                            .addGap(168, 168, 168)
+                                            .addComponent(asc_jumlah)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(desc_jumlah)
+                                            .addGap(167, 167, 167)
+                                            .addComponent(asc_totalHarga)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(desc_totalBarang)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(asc_tanggalTransaksi)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(riwayatTransaksiLayout.createSequentialGroup()
+                                                    .addComponent(desc_TanggalTransaksi)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(asc_MetodePembelian)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(desc_MetodePembelian)
+                                                    .addGap(48, 48, 48)))))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(button_search)))
                             .addGap(36, 36, 36))))
@@ -191,22 +418,41 @@ import Connection.SQLConnection;
                         .addComponent(button_search, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(TransaksiBaru_button, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(riwayatTransaksiLayout.createSequentialGroup()
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(desc_TanggalTransaksi)
+                                .addComponent(asc_tanggalTransaksi)
+                                .addComponent(desc_MetodePembelian)
+                                .addComponent(asc_MetodePembelian)
+                                .addGroup(riwayatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(asc_totalHarga)
+                                    .addComponent(desc_totalBarang)
+                                    .addComponent(asc_jumlah)
+                                    .addComponent(desc_jumlah)
+                                    .addComponent(asc_ukuran)
+                                    .addComponent(desc_ukuran)
+                                    .addComponent(asc_kodebarang1)
+                                    .addComponent(desc_KodeBarang))))
+                        .addComponent(asc_nota)
+                        .addComponent(desc_Kodebarang))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(24, 24, 24))
             );
 
             mainPanel.add(riwayatTransaksi, "card2");
 
             transaksiBaru.setBackground(new java.awt.Color(255, 255, 255));
 
-            jLabel3.setFont(new java.awt.Font("Lato", 0, 36)); // NOI18N
+            jLabel3.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 36)); // NOI18N
             jLabel3.setForeground(new java.awt.Color(13, 14, 69));
             jLabel3.setText("RIWAYAT TRANSAKSI");
 
             tambahTransaksi_button.setBackground(new java.awt.Color(13, 14, 69));
-            tambahTransaksi_button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+            tambahTransaksi_button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
             tambahTransaksi_button.setForeground(new java.awt.Color(255, 255, 255));
             tambahTransaksi_button.setText("TAMBAH TRANSAKSI");
             tambahTransaksi_button.addActionListener(new java.awt.event.ActionListener() {
@@ -218,34 +464,34 @@ import Connection.SQLConnection;
             inputJumlahBarang.setBackground(new java.awt.Color(245, 245, 245));
             inputJumlahBarang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-            jLabel6.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+            jLabel6.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
             jLabel6.setText("Jumlah Barang");
 
             ukuran_comboBox.setBackground(new java.awt.Color(245, 245, 245));
             ukuran_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "XXL", "XL", "L", "M", "S" }));
             ukuran_comboBox.setBorder(null);
 
-            jLabel5.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+            jLabel5.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
             jLabel5.setText("Ukuran");
 
             inputNamaBarang.setBackground(new java.awt.Color(245, 245, 245));
             inputNamaBarang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-            jLabel4.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+            jLabel4.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
             jLabel4.setText("Kode Barang");
 
             BeliDimana.setBackground(new java.awt.Color(245, 245, 245));
             BeliDimana.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offlen", "Shopee", "Tokopedia" }));
             BeliDimana.setBorder(null);
 
-            jLabel7.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+            jLabel7.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
             jLabel7.setText("Beli Dimana");
 
             ukuran_comboBox2.setBackground(new java.awt.Color(245, 245, 245));
             ukuran_comboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ShopeePay", "GoPay", "BCA","BNI","BRI","BSI", "Mandiri" }));
             ukuran_comboBox2.setBorder(null);
 
-            jLabel9.setFont(new java.awt.Font("Lato", 0, 16)); // NOI18N
+            jLabel9.setFont(new java.awt.Font("DejaVu Sans Condensed", 0, 16)); // NOI18N
             jLabel9.setText("Metode Pembayaran");
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -258,7 +504,7 @@ import Connection.SQLConnection;
             jScrollPane1.setViewportView(jTable1);
 
             HitungTotal_button.setBackground(new java.awt.Color(13, 14, 69));
-            HitungTotal_button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+            HitungTotal_button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
             HitungTotal_button.setForeground(new java.awt.Color(255, 255, 255));
             HitungTotal_button.setText("HITUNG TOTAL");
             HitungTotal_button.setToolTipText("");
@@ -269,7 +515,7 @@ import Connection.SQLConnection;
             });
 
             batal_button.setBackground(new java.awt.Color(13, 14, 69));
-            batal_button.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+            batal_button.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
             batal_button.setForeground(new java.awt.Color(255, 255, 255));
             batal_button.setText("BATAL");
             batal_button.addActionListener(new java.awt.event.ActionListener() {
@@ -278,11 +524,11 @@ import Connection.SQLConnection;
                 }
             });
 
-            jLabel8.setFont(new java.awt.Font("Lato", 1, 16)); // NOI18N
+            jLabel8.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 16)); // NOI18N
             jLabel8.setText("Nota");
 
             batal_button1.setBackground(new java.awt.Color(13, 14, 69));
-            batal_button1.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+            batal_button1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
             batal_button1.setForeground(new java.awt.Color(255, 255, 255));
             batal_button1.setText("TAMBAH BARANG");
             batal_button1.addActionListener(new java.awt.event.ActionListener() {
@@ -294,7 +540,7 @@ import Connection.SQLConnection;
             TOTALHARGA.setToolTipText("");
 
             hapusBarangNota_button2.setBackground(new java.awt.Color(13, 14, 69));
-            hapusBarangNota_button2.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+            hapusBarangNota_button2.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
             hapusBarangNota_button2.setForeground(new java.awt.Color(255, 255, 255));
             hapusBarangNota_button2.setText("HAPUS BARANG");
             hapusBarangNota_button2.addActionListener(new java.awt.event.ActionListener() {
@@ -303,7 +549,7 @@ import Connection.SQLConnection;
                 }
             });
 
-            jLabel1.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
+            jLabel1.setFont(new java.awt.Font("DejaVu Sans Condensed", 1, 14)); // NOI18N
             jLabel1.setText("Total Yang Harus Dibayar");
 
             javax.swing.GroupLayout transaksiBaruLayout = new javax.swing.GroupLayout(transaksiBaru);
@@ -660,9 +906,214 @@ import Connection.SQLConnection;
                 JOptionPane.showMessageDialog(null, "Failed to search for transactions. Please check your inputs and try again.");
             }
         }
+
+        private void asc_notaActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaAsc(conn, "no_nota");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void desc_KodebarangActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaDesc(conn, "no_nota");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void desc_KodeBarangActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaDesc(conn, "kode_barang");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void asc_kodebarang1ActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaAsc(conn, "kode_barang");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void desc_ukuranActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaDesc(conn, "ukuran");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void asc_ukuranActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaAsc(conn, "ukuran");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void desc_jumlahActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaDesc(conn, "jumlah_barang");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void asc_jumlahActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaAsc(conn, "jumlah_barang");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void desc_totalBarangActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaDesc(conn, "total_harga");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void asc_totalHargaActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaAsc(conn, "total_harga");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void desc_TanggalTransaksiActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaDesc(conn, "tanggal_transaksi");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+
+        }
+    
+        private void asc_tanggalTransaksiActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaDesc(conn, "tanggal_transaksi");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void asc_MetodePembelianActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaAsc(conn, "metode_pembelian");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void desc_MetodePembelianActionPerformed(java.awt.event.ActionEvent evt) {
+            try {
+                Connection conn = SQLConnection.getConnection();
+                DefaultTableModel model = Sort.notaDesc(conn, "metode_pembelian");
+                tableDataTransaksi.setModel(model);
+            } catch (SQLException ex) {
+                // Handle exception
+            }
+        }
+    
+        private void asc_notaMousePressed(java.awt.event.MouseEvent evt) {
+        }
+    
+        private void asc_kodebarang1MousePressed(java.awt.event.MouseEvent evt) {
+        }
+    
+        private void desc_KodeBarangMousePressed(java.awt.event.MouseEvent evt) {
+        }
+    
+        private void asc_ukuranMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asc_ukuranMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_asc_ukuranMousePressed
+    
+        private void desc_ukuranMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desc_ukuranMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_desc_ukuranMousePressed
+    
+        private void asc_jumlahMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asc_jumlahMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_asc_jumlahMousePressed
+    
+        private void desc_jumlahMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desc_jumlahMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_desc_jumlahMousePressed
+    
+        private void asc_totalHargaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asc_totalHargaMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_asc_totalHargaMousePressed
+    
+        private void desc_totalBarangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desc_totalBarangMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_desc_totalBarangMousePressed
+    
+        private void asc_tanggalTransaksiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asc_tanggalTransaksiMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_asc_tanggalTransaksiMousePressed
+    
+        private void desc_TanggalTransaksiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desc_TanggalTransaksiMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_desc_TanggalTransaksiMousePressed
+    
+        private void asc_MetodePembelianMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asc_MetodePembelianMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_asc_MetodePembelianMousePressed
+    
+        private void desc_MetodePembelianMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desc_MetodePembelianMousePressed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_desc_MetodePembelianMousePressed
         
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JTextField TOTALHARGA1;
+        private javax.swing.JButton asc_MetodePembelian;
+        private javax.swing.JButton asc_jumlah;
+        private javax.swing.JButton asc_kodebarang1;
+        private javax.swing.JButton asc_nota;
+        private javax.swing.JButton asc_tanggalTransaksi;
+        private javax.swing.JButton asc_totalHarga;
+        private javax.swing.JButton asc_ukuran;
+        private javax.swing.JButton desc_KodeBarang;
+        private javax.swing.JButton desc_Kodebarang;
+        private javax.swing.JButton desc_MetodePembelian;
+        private javax.swing.JButton desc_TanggalTransaksi;
+        private javax.swing.JButton desc_jumlah;
+        private javax.swing.JButton desc_totalBarang;
+        private javax.swing.JButton desc_ukuran;
         private javax.swing.JButton HitungTotal_button;
         private javax.swing.JTextField TOTALHARGA;
         private javax.swing.JButton TransaksiBaru_button;

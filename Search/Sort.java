@@ -10,25 +10,19 @@ import javax.swing.table.DefaultTableModel;
 
 public class Sort {
 
-    public static DefaultTableModel barangAsc(Connection conn, String keyword, String sort) throws SQLException {
+    public static DefaultTableModel barangAsc(Connection conn, String sort) throws SQLException {
         DefaultTableModel model = new DefaultTableModel();
-
+    
         String query = "SELECT b.kode_barang, b.nama_barang, b.harga, COALESCE(SUM(sb.offlen + sb.shopee + sb.tokopedia), 0) AS total_stok "
-                +
-                "FROM barang b " +
-                "LEFT JOIN stok_barang sb ON b.kode_barang = sb.kode_barang " +
-                "GROUP BY b.kode_barang, b.nama_barang, b.harga" +
-                "WHERE nama_barang LIKE ? OR kode_barang LIKE ? OR harga LIKE ?" +
-                "ORDER BY ?";
+        +
+        "FROM barang b " +
+        "LEFT JOIN stok_barang sb ON b.kode_barang = sb.kode_barang " +
+        "GROUP BY b.kode_barang, b.nama_barang, b.harga " +
+        "ORDER BY " + sort + " ASC";
 
+    
         // Using PreparedStatement to avoid SQL injection
         try (PreparedStatement st = conn.prepareStatement(query)) {
-            // Setting parameters
-            st.setString(1, "%" + keyword + "%");
-            st.setString(2, "%" + keyword + "%");
-            st.setString(3, "%" + keyword + "%");
-            st.setString(4, "%" + sort + "%");
-
             // Executing the query
             try (ResultSet rs = st.executeQuery()) {
                 // Add columns to the table model
@@ -37,8 +31,6 @@ public class Sort {
                 for (int i = 1; i <= columnCount; i++) {
                     model.addColumn(metaData.getColumnName(i));
                 }
-
-                // Add rows to the table model
                 while (rs.next()) {
                     Object[] row = new Object[columnCount];
                     for (int i = 1; i <= columnCount; i++) {
@@ -48,29 +40,23 @@ public class Sort {
                 }
             }
         }
-
         return model;
     }
+    
 
-    public static DefaultTableModel barangDesc(Connection conn, String keyword, String sort) throws SQLException {
+    public static DefaultTableModel barangDesc(Connection conn, String sort) throws SQLException {
         DefaultTableModel model = new DefaultTableModel();
-
+    
         String query = "SELECT b.kode_barang, b.nama_barang, b.harga, COALESCE(SUM(sb.offlen + sb.shopee + sb.tokopedia), 0) AS total_stok "
-                +
-                "FROM barang b " +
-                "LEFT JOIN stok_barang sb ON b.kode_barang = sb.kode_barang " +
-                "GROUP BY b.kode_barang, b.nama_barang, b.harga" +
-                "WHERE nama_barang LIKE ? OR kode_barang LIKE ? OR harga LIKE ?" +
-                "ORDER BY ? DESC";
+        +
+        "FROM barang b " +
+        "LEFT JOIN stok_barang sb ON b.kode_barang = sb.kode_barang " +
+        "GROUP BY b.kode_barang, b.nama_barang, b.harga " +
+        "ORDER BY " + sort + " ASC";
 
+    
         // Using PreparedStatement to avoid SQL injection
         try (PreparedStatement st = conn.prepareStatement(query)) {
-            // Setting parameters
-            st.setString(1, "%" + keyword + "%");
-            st.setString(2, "%" + keyword + "%");
-            st.setString(3, "%" + keyword + "%");
-            st.setString(4, "%" + sort + "%");
-
             // Executing the query
             try (ResultSet rs = st.executeQuery()) {
                 // Add columns to the table model
@@ -79,8 +65,6 @@ public class Sort {
                 for (int i = 1; i <= columnCount; i++) {
                     model.addColumn(metaData.getColumnName(i));
                 }
-
-                // Add rows to the table model
                 while (rs.next()) {
                     Object[] row = new Object[columnCount];
                     for (int i = 1; i <= columnCount; i++) {
@@ -90,9 +74,9 @@ public class Sort {
                 }
             }
         }
-
         return model;
     }
+    
 
     public static DefaultTableModel pegawaiAsc(Connection conn, String keyword, String sort) throws SQLException {
         DefaultTableModel model = new DefaultTableModel();
@@ -212,34 +196,16 @@ public class Sort {
         return model;
     }
 
-    public static DefaultTableModel notaAsc(Connection conn, String keyword, String sort) throws SQLException {
+    public static DefaultTableModel notaAsc(Connection conn, String sort) throws SQLException {
         DefaultTableModel model = new DefaultTableModel();
-
-        String query = "SELECT transaksi.*, nota.metode_pembelian\n" +
+    
+        String query = "SELECT transaksi.*, nota.tanggal_transaksi ,nota.metode_pembelian\n" +
                 "FROM transaksi\n" +
                 "    JOIN nota\n" +
                 "    ON transaksi.no_nota = nota.no_nota\n" +
-                "WHERE transaksi.no_nota LIKE ? OR\n" +
-                "    kode_barang LIKE ? OR\n" +
-                "    ukuran LIKE ? OR\n" +
-                "    jumlah_barang LIKE ? OR\n" +
-                "    total_harga LIKE ? OR\n" +
-                "    tanggal_transaksi LIKE ? OR\n" +
-                "    metode_pembelian LIKE ?" +
-                "ORDER BY ?";
-
+                "ORDER BY " + sort;
+    
         try (PreparedStatement st = conn.prepareStatement(query)) {
-            // Setting parameters
-            st.setString(1, "%" + keyword + "%");
-            st.setString(2, "%" + keyword + "%");
-            st.setString(3, "%" + keyword + "%");
-            st.setString(4, "%" + keyword + "%");
-            st.setString(5, "%" + keyword + "%");
-            st.setString(6, "%" + keyword + "%");
-            st.setString(7, "%" + keyword + "%");
-            st.setString(8, "%" + keyword + "%");
-            st.setString(9, "%" + sort + "%");
-
             // Executing the query
             try (ResultSet rs = st.executeQuery()) {
                 // Add columns to the table model
@@ -248,7 +214,7 @@ public class Sort {
                 for (int i = 1; i <= columnCount; i++) {
                     model.addColumn(metaData.getColumnName(i));
                 }
-
+    
                 // Add rows to the table model
                 while (rs.next()) {
                     Object[] row = new Object[columnCount];
@@ -259,38 +225,21 @@ public class Sort {
                 }
             }
         }
-
+    
         return model;
     }
+    
 
-    public static DefaultTableModel notaDesc(Connection conn,String keyword, String sort) throws SQLException {
+    public static DefaultTableModel notaDesc(Connection conn, String sort) throws SQLException {
         DefaultTableModel model = new DefaultTableModel();
-
-        String query = "SELECT transaksi.*, nota.metode_pembelian\n" +
+    
+        String query = "SELECT transaksi.*,  nota.tanggal_transaksi ,nota.metode_pembelian\n" +
                 "FROM transaksi\n" +
                 "    JOIN nota\n" +
                 "    ON transaksi.no_nota = nota.no_nota\n" +
-                "WHERE transaksi.no_nota LIKE ? OR\n" +
-                "    kode_barang LIKE ? OR\n" +
-                "    ukuran LIKE ? OR\n" +
-                "    jumlah_barang LIKE ? OR\n" +
-                "    total_harga LIKE ? OR\n" +
-                "    tanggal_transaksi LIKE ? OR\n" +
-                "    metode_pembelian LIKE ?" +
-                "ORDER BY ? DESC";
-
+                "ORDER BY " + sort + " DESC";
+    
         try (PreparedStatement st = conn.prepareStatement(query)) {
-            // Setting parameters
-            st.setString(1, "%" + keyword + "%");
-            st.setString(2, "%" + keyword + "%");
-            st.setString(3, "%" + keyword + "%");
-            st.setString(4, "%" + keyword + "%");
-            st.setString(5, "%" + keyword + "%");
-            st.setString(6, "%" + keyword + "%");
-            st.setString(7, "%" + keyword + "%");
-            st.setString(8, "%" + keyword + "%");
-            st.setString(9, "%" + sort + "%");
-
             // Executing the query
             try (ResultSet rs = st.executeQuery()) {
                 // Add columns to the table model
@@ -299,7 +248,7 @@ public class Sort {
                 for (int i = 1; i <= columnCount; i++) {
                     model.addColumn(metaData.getColumnName(i));
                 }
-
+    
                 // Add rows to the table model
                 while (rs.next()) {
                     Object[] row = new Object[columnCount];
@@ -310,8 +259,9 @@ public class Sort {
                 }
             }
         }
-
+    
         return model;
     }
+    
 
 }
