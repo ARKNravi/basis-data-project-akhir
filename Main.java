@@ -1,15 +1,11 @@
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import Connection.SQLConnection;
-import LoginForm.Login;
 import Main.MenuUtama;
 
 public class Main {
+    // static String path =
+    // "/Users/fauzanghaza/Documents/GitHub/basis-data-project-akhir/"; //input path
+    static String os = "//"; // mac os : /; Windows : \\;
 
-    public static void main(String args[]) throws SQLException, ClassNotFoundException {
-        String os = "/"; // input path
-        Connection conn = SQLConnection.getConnection();
+    public static void main(String args[]) {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -19,20 +15,21 @@ public class Main {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            // java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        //    java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         // </editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new MenuUtama(conn, os).setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MenuUtama(os).setVisible(true);
+            }
         });
     }
-
 }

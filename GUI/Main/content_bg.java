@@ -13,8 +13,8 @@ public class content_bg extends javax.swing.JPanel {
     /**
      * Creates new form content_bg
      */
-    public content_bg() {
-        initComponents();
+    public content_bg(String os) {
+        initComponents(os);
     }
 
     /**
@@ -24,7 +24,7 @@ public class content_bg extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String os) {
 
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();

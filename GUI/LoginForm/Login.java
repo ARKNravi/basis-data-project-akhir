@@ -6,6 +6,7 @@ package LoginForm;
 
 import Main.MenuUtama;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,8 +20,8 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Login(Connection conn, String os) {
-        initComponents(conn, os);
+    public Login(String os) {
+        initComponents(os);
     }
     
     void cleanTextField() {
@@ -36,7 +37,7 @@ public class Login extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(Connection conn, String os) {
+    private void initComponents(String os) {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         exit_button = new javax.swing.JLabel();
@@ -112,7 +113,7 @@ public class Login extends javax.swing.JFrame {
         });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt, conn, os);
+                jButton1ActionPerformed(evt, os);
             }
         });
         getContentPane().add(jButton1);
@@ -149,20 +150,22 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_exit_buttonMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt,Connection conn, String os) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt, String os) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String username = txt_username.getText();
         String password = txt_password.getText();
         
         try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost//SQLEXPRESS:1433;databaseName=project_basdat;encrypt=true;trustServerCertificate=true", "admin", "123");
             String sqlquery = "SELECT * FROM userlog WHERE username = '"+username+"' AND userpassword = '"+password+"'";
-            PreparedStatement pst = conn.prepareStatement(sqlquery);
+            PreparedStatement pst = con.prepareStatement(sqlquery);
             ResultSet rs = pst.executeQuery();
             if(!rs.next()){
-                JOptionPane.showMessageDialog(null, "Username or Password Incorrect / Empty");
+                JOptionPane.showMessageDialog(null, "Username or Password Incorret / Empty");
             }else{
                 this.dispose();
-                new MenuUtama(conn, os).show();
+                new MenuUtama(os).show();
              
                 }
         }catch(Exception e){
