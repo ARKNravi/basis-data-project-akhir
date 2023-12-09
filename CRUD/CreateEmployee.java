@@ -1,11 +1,77 @@
 package CRUD;
 
+import Connection.SQLConnection;
+import java.util.Scanner;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
 public class CreateEmployee {
 
+    public static void main(String[] args) {
+        try (Connection connection = SQLConnection.getConnection()) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Enter employee details:");
+
+            System.out.print("NIK: ");
+            String nik = scanner.nextLine();
+
+            System.out.print("Name: ");
+            String nama = scanner.nextLine();
+
+            System.out.print("Education: ");
+            String pendidikan = scanner.nextLine();
+
+            System.out.print("Place of Birth: ");
+            String tempat = scanner.nextLine();
+
+            System.out.print("Date of Birth (YYYY-MM-DD): ");
+            String tanggal_lahir = scanner.nextLine();
+
+            System.out.print("Gender: ");
+            String jenis_kelamin = scanner.nextLine();
+
+            System.out.print("NPWP: ");
+            String npwp = scanner.nextLine();
+
+            System.out.print("Marital Status: ");
+            String status_pernikahan = scanner.nextLine();
+
+            System.out.print("Number of Children: ");
+            int jumlah_anak = scanner.nextInt();
+
+            System.out.print("Bank Account Number: ");
+            String nomor_rekening = scanner.next();
+            scanner.nextLine(); // Consume the newline character
+
+            System.out.print("Address: ");
+            String alamat = scanner.nextLine();
+
+            System.out.print("Class: ");
+            int kelas = scanner.nextInt();
+
+            System.out.print("Golongan: ");
+            int golongan = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            System.out.print("Employee Status: ");
+            String status_pegawai = scanner.nextLine();
+
+            System.out.print("Total Cuti: ");
+            int total_cuti = scanner.nextInt();
+
+            System.out.print("Total Izin: ");
+            int total_izin = scanner.nextInt();
+
+            tambahPegawai(connection, nik, nama, pendidikan, tempat, tanggal_lahir, jenis_kelamin, npwp,
+                    status_pernikahan, jumlah_anak, nomor_rekening, alamat, kelas, golongan, status_pegawai,
+                    total_cuti, total_izin);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void tambahPegawai(Connection conn, String nik, String nama, String pendidikan, String tempat,
                                      String tanggal_lahir, String jenis_kelamin, String npwp, String status_pernikahan,

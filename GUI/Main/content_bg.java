@@ -38,9 +38,9 @@ public class content_bg extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        logo.setIcon(new javax.swing.ImageIcon("C:\\Penyimpanan Utama\\Downloads\\logo.png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\logo-removebg-preview.png")); // NOI18N
 
-        gambar.setIcon(new javax.swing.ImageIcon("C:\\Penyimpanan Utama\\Downloads\\2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (1).png")); // NOI18N
+        gambar.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (1).png")); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Lato", 3, 24)); // NOI18N
         jLabel1.setText("LAPORAN TERKAIT");
