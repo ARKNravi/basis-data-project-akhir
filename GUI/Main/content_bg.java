@@ -220,7 +220,7 @@ private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt) {
         Connection conn = SQLConnection.getConnection();
 
         // Load .jasper file
-        String reportSource = "C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\dataKepegawaian.jasper";
+        String reportSource = "C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\pegawai.jasper";
         InputStream is = new FileInputStream(new File(reportSource));
 
         // Set parameters if any
