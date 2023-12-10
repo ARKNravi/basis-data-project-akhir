@@ -16,11 +16,11 @@ public class Search {
 
         try (Connection conn = SQLConnection.getConnection()) {
             String query = "SELECT b.kode_barang, b.nama_barang, b.harga, COALESCE(SUM(sb.offlen + sb.shopee + sb.tokopedia), 0) AS total_stok "
-                    +
-                    "FROM barang b " +
-                    "LEFT JOIN stok_barang sb ON b.kode_barang = sb.kode_barang " +
-                    "GROUP BY b.kode_barang, b.nama_barang, b.harga" +
-                    "WHERE nama_barang LIKE ? OR kode_barang LIKE ? OR harga LIKE ?";
+            +
+            "FROM barang b " +
+            "LEFT JOIN stok_barang sb ON b.kode_barang = sb.kode_barang " +
+            "WHERE b.kode_barang LIKE ? OR b.nama_barang LIKE ? OR b.harga LIKE ? " +
+            "GROUP BY b.kode_barang, b.nama_barang, b.harga";
 
             // Using PreparedStatement to avoid SQL injection
             try (PreparedStatement st = conn.prepareStatement(query)) {
@@ -29,7 +29,7 @@ public class Search {
                 st.setString(2, "%" + keyword + "%");
                 st.setString(3, "%" + keyword + "%");
 
-                // Executing the query
+
                 try (ResultSet rs = st.executeQuery()) {
                     // Add columns to the table model
                     ResultSetMetaData metaData = rs.getMetaData();
