@@ -25,3 +25,6 @@ INSERT INTO tunjangan_keluarga (status_pernikahan, jumlah_anak, tunjangan) VALUE
 ('Menikah', 1, 150000),
 ('Menikah', 2, 250000),
 ('Menikah', 3, 350000);
+
+INSERT INTO userlog(username, userpassword) VALUES
+('ravi','123');

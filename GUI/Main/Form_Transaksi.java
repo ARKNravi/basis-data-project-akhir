@@ -170,7 +170,7 @@ import Connection.SQLConnection;
                 }
             });
 
-            asc_nota.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_nota.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
             asc_nota.setBorder(null);
             asc_nota.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -183,7 +183,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            desc_Kodebarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_Kodebarang.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
             desc_Kodebarang.setBorder(null);
             desc_Kodebarang.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +191,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            desc_KodeBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_KodeBarang.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
             desc_KodeBarang.setBorder(null);
             desc_KodeBarang.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -204,7 +204,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            asc_kodebarang1.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_kodebarang1.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
             asc_kodebarang1.setBorder(null);
             asc_kodebarang1.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -217,7 +217,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            desc_ukuran.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_ukuran.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
             desc_ukuran.setBorder(null);
             desc_ukuran.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -230,7 +230,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            asc_ukuran.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_ukuran.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
             asc_ukuran.setBorder(null);
             asc_ukuran.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -243,7 +243,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            desc_jumlah.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_jumlah.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
             desc_jumlah.setBorder(null);
             desc_jumlah.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -256,7 +256,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            asc_jumlah.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_jumlah.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
             asc_jumlah.setBorder(null);
             asc_jumlah.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -269,7 +269,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            desc_totalBarang.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_totalBarang.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
             desc_totalBarang.setBorder(null);
             desc_totalBarang.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -282,7 +282,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            asc_totalHarga.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_totalHarga.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
             asc_totalHarga.setBorder(null);
             asc_totalHarga.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -295,7 +295,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            desc_TanggalTransaksi.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_TanggalTransaksi.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
             desc_TanggalTransaksi.setBorder(null);
             desc_TanggalTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -308,7 +308,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            asc_tanggalTransaksi.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_tanggalTransaksi.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
             asc_tanggalTransaksi.setBorder(null);
             asc_tanggalTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -321,7 +321,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            asc_MetodePembelian.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+            asc_MetodePembelian.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
             asc_MetodePembelian.setBorder(null);
             asc_MetodePembelian.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -334,7 +334,7 @@ import Connection.SQLConnection;
                 }
             });
     
-            desc_MetodePembelian.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+            desc_MetodePembelian.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
             desc_MetodePembelian.setBorder(null);
             desc_MetodePembelian.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {

@@ -54,7 +54,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
     }
 
     public Form_Pegawai(String os) {
-        initComponents();
+        initComponents(os);
         populateTable();
     }
 
@@ -65,7 +65,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String os) {
 
         jPanel1 = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
@@ -293,7 +293,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_nik.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_nik.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_nik.setBorder(null);
         desc_nik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,7 +301,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_nik.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nik.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_nik.setBorder(null);
         asc_nik.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -314,7 +314,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_nama.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_nama.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_nama.setBorder(null);
         desc_nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,7 +322,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_nama.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nama.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_nama.setBorder(null);
         asc_nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -330,7 +330,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_ttl.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_ttl.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_ttl.setBorder(null);
         desc_ttl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,7 +338,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_ttl.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_ttl.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_ttl.setBorder(null);
         asc_ttl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,7 +346,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_npwp.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_npwp.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_npwp.setBorder(null);
         desc_npwp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,7 +354,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_npwp.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_npwp.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_npwp.setBorder(null);
         asc_npwp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,7 +362,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_rekening.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_rekening.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_rekening.setBorder(null);
         desc_rekening.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,7 +370,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_rekening.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_rekening.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_rekening.setBorder(null);
         asc_rekening.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,7 +378,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_anak.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_anak.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_anak.setBorder(null);
         desc_anak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -386,7 +386,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_anak.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_anak.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_anak.setBorder(null);
         asc_anak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,7 +394,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_grade.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_grade.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_grade.setBorder(null);
         desc_grade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,7 +402,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_grade.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_grade.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_grade.setBorder(null);
         asc_grade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -410,7 +410,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_golongan.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_golongan.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_golongan.setBorder(null);
         desc_golongan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,7 +418,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_golongan.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_golongan.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_golongan.setBorder(null);
         asc_golongan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -426,7 +426,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        desc_nip.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\down-arrow.png")); // NOI18N
+        desc_nip.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"down-arrow.png")); // NOI18N
         desc_nip.setBorder(null);
         desc_nip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -434,7 +434,7 @@ public class Form_Pegawai extends javax.swing.JPanel {
             }
         });
 
-        asc_nip.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\up-arrow (1).png")); // NOI18N
+        asc_nip.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"up-arrow (1).png")); // NOI18N
         asc_nip.setBorder(null);
         asc_nip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

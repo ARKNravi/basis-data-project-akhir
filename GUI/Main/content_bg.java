@@ -52,9 +52,9 @@ public class content_bg extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        logo.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\logo-removebg-preview.png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon("GUI "+os+"image_main"+os+"logo-removebg-preview.png")); // NOI18N
 
-        gambar.setIcon(new javax.swing.ImageIcon("C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (1).png")); // NOI18N
+        gambar.setIcon(new javax.swing.ImageIcon("GUI"+os+"image_main"+os+"2022-NOV-Pop-Up-Shops-Blog-Feature-01-removebg-preview (1).png")); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("DejaVu Sans Condensed", 3, 24)); // NOI18N
         jLabel1.setText("LAPORAN TERKAIT");
@@ -70,7 +70,7 @@ public class content_bg extends javax.swing.JPanel {
         });
         jesper_transaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jesper_transaksiActionPerformed(evt);
+                jesper_transaksiActionPerformed(evt,os);
             }
         });
 
@@ -85,7 +85,7 @@ public class content_bg extends javax.swing.JPanel {
         });
         jesper_kepegawaian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jesper_kepegawaianActionPerformed(evt);
+                jesper_kepegawaianActionPerformed(evt, os);
             }
         });
 
@@ -100,7 +100,7 @@ public class content_bg extends javax.swing.JPanel {
         });
         jesper_barang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jesper_barangActionPerformed(evt);
+                jesper_barangActionPerformed(evt, os);
             }
         });
 
@@ -150,7 +150,7 @@ public class content_bg extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jesper_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jesper_transaksiActionPerformed
+    private void jesper_transaksiActionPerformed(java.awt.event.ActionEvent evt, String os) {//GEN-FIRST:event_jesper_transaksiActionPerformed
             try {
         JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance())
             .setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
@@ -158,7 +158,7 @@ public class content_bg extends javax.swing.JPanel {
         Connection conn = SQLConnection.getConnection();
 
         // Load .jasper file
-        String reportSource = "C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\LaporanPenjualan.jasper";
+        String reportSource = "GUI"+os+"image_main"+os+"LaporanPenjualan.jasper";
         InputStream is = new FileInputStream(new File(reportSource));
 
         // Set parameters if any
@@ -174,7 +174,7 @@ public class content_bg extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_jesper_transaksiActionPerformed
 
-private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt) {
+private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt, String os) {
 
     try {
         JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance())
@@ -183,7 +183,7 @@ private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt) {
         Connection conn = SQLConnection.getConnection();
 
         // Load .jasper file
-        String reportSource = "C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\laporanBarang.jasper";
+        String reportSource = "GUI"+os+"image_main"+os+"laporanBarang.jasper";
         InputStream is = new FileInputStream(new File(reportSource));
 
         // Set parameters if any
@@ -211,7 +211,7 @@ private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }//GEN-LAST:event_jesper_transaksiMousePressed
 
-    private void jesper_kepegawaianActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jesper_kepegawaianActionPerformed(java.awt.event.ActionEvent evt, String os) {
 
     try {
         JRPropertiesUtil.getInstance(DefaultJasperReportsContext.getInstance())
@@ -220,7 +220,7 @@ private void jesper_barangActionPerformed(java.awt.event.ActionEvent evt) {
         Connection conn = SQLConnection.getConnection();
 
         // Load .jasper file
-        String reportSource = "C:\\Recovery\\Project\\basis-data-project-akhir\\GUI\\image_main\\pegawai.jasper";
+        String reportSource = "GUI"+os+"image_main"+os+"pegawai.jasper";
         InputStream is = new FileInputStream(new File(reportSource));
 
         // Set parameters if any
